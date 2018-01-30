@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'seller create customer' do
   scenario 'succesfully' do
+    seller = create(:seller)
+
+    login_as(seller)
     visit root_path
 
     click_on 'Novo Cliente'
@@ -22,6 +25,9 @@ feature 'seller create customer' do
     expect(page).to have_content('1988-02-29')
   end
   scenario 'and create a PJ customer' do
+    seller = create(:seller)
+
+    login_as(seller)
     visit root_path
     click_on 'Novo Cliente'
 
