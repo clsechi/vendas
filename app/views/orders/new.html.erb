@@ -1,0 +1,13 @@
+<% form_for @order do |f| %>
+<div class="">
+  <% f.label :product_id, 'Produto' %>
+  <% f.collection_select :product_id, @products, :id , :name, {} %>
+</div>
+<div class="">
+  <% f.label :periodicity, 'Periodicidade' %>
+  <% f.select :periodicity, ['1 mês', '3 meses', '6 meses', '12 meses'] %>
+</div>
+<div class="">
+  <% f.submit 'Criar pedido' %>
+</div>
+<% end %>
