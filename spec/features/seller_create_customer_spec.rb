@@ -5,7 +5,6 @@ feature 'seller create customer' do
     seller = create(:seller)
 
     login_as(seller)
-
     visit root_path
 
     click_on 'Novo Cliente'
@@ -29,7 +28,6 @@ feature 'seller create customer' do
     seller = create(:seller)
 
     login_as(seller)
-    
     visit root_path
     click_on 'Novo Cliente'
 

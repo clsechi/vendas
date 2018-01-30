@@ -32,7 +32,7 @@ feature 'user views orders list' do
   scenario 'and other users cant see' do
     seller = create(:seller)
     customer = create(:customer)
-    order = create(:order, customer: customer)
+    create(:order, customer: customer)
 
     login_as(seller)
 
