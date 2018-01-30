@@ -1,3 +1,6 @@
+
 <% if current_seller.admin? %>
   <%= link_to 'Visualizar todos pedidos', orders_path%>
 <% end %>
+
+<%= link_to 'Novo Cliente', new_customer_path %>
