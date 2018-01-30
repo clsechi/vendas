@@ -3,8 +3,9 @@ require 'rails_helper'
 feature 'Seller search for customer' do
   scenario 'succesfully' do
     customer = create(:customer, name: 'Maria')
+    seller = create(:seller)
 
-    #login_as seller
+    login_as seller
     visit root_path
     fill_in 'Busca', with: customer.name
     click_on 'Pesquisar cliente'

@@ -12,6 +12,11 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
+  def search
+    @search_param = params[:search]
+    @customers = Customer.where('name like ?', "%#{@search_param}%")
+  end
+
   private
 
   def customer_params
