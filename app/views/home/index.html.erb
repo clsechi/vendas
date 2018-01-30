@@ -1,1 +1,3 @@
-<%= link_to 'Visualizar todos pedidos', orders_path%>
+<% if current_seller.admin? %>
+  <%= link_to 'Visualizar todos pedidos', orders_path%>
+<% end %>
