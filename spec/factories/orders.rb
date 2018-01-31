@@ -1,9 +1,8 @@
 FactoryBot.define do
   factory :order do
-    creation_date '2018-01-30'
-    status 'MyString'
-    seller 'MyString'
+    status "MyString"
+    seller nil
     customer nil
-    product 'MyString'
+    product_id 1
   end
 end

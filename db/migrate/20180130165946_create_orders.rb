@@ -1,11 +1,10 @@
 class CreateOrders < ActiveRecord::Migration[5.1]
   def change
     create_table :orders do |t|
-      t.date :creation_date
       t.string :status
-      t.string :seller
+      t.references :seller, foreign_key: true
       t.references :customer, foreign_key: true
-      t.string :product
+      t.integer :product_id
 
       t.timestamps
     end
