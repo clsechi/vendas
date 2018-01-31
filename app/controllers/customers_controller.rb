@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_seller!, only: [:new, :create, :show, :search]
   def new
     @customer = Customer.new
   end
