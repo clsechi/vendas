@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'user views orders list' do
   scenario 'successfully' do
     seller = create(:seller, admin: true)
-    customer = create(:customer)
+    customer = create(:customer, :company)
     order = create(:order, customer: customer)
 
     login_as(seller)
@@ -17,7 +17,7 @@ feature 'user views orders list' do
 
   scenario 'and admin views all orders' do
     seller = create(:seller, admin: true)
-    customer = create(:customer)
+    customer = create(:customer, :legal)
     order = create(:order, customer: customer)
 
     login_as(seller)
@@ -31,7 +31,7 @@ feature 'user views orders list' do
 
   scenario 'and other users cant see' do
     seller = create(:seller)
-    customer = create(:customer)
+    customer = create(:customer, :legal)
     create(:order, customer: customer)
 
     login_as(seller)
