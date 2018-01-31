@@ -4,5 +4,12 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :orders, only: [:new, :create, :show]
+  resources :orders, only:[:index, :show, :new, :create]
+
+  resources :customers, only: [:new, :create, :show] do
+    collection do
+      get 'search'
+    end
+  end
+
 end

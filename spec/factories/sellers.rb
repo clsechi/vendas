@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :seller do
-    email 'seller@locaweb.com'
-    password '123456'
+    email 'email1234@email.com'
+    password '12345678'
   end
 end

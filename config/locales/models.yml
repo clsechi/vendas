@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      customer: Cliente
+    attributes:
+      customer:
+        name: Nome
+        address: Endereco
+        cpf: CPF
+        cnpj: CNPJ
+        email: Email
+        phone: Telefone
+        birth_date: Data de Nascimento
+        company_name: Nome da Companhia
+        contact: Contato
+        submit: Enviar
+        new_customer: Novo Cliente

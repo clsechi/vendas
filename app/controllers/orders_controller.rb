@@ -1,5 +1,13 @@
 class OrdersController < ApplicationController
 
+  def index
+    if current_seller.admin?
+      @orders = Order.all
+    else
+      @orders = Order.where(seller_id: current_seller)
+    end
+  end
+
   def new
     @order = Order.new
     #json = '[{"name": "Hospedagem", "id": 1, "periodicity": [{"period: "1 mês", value: "100,00"}]}]'

@@ -1,0 +1,4 @@
+<% @orders.each do |order|%>
+  <%= link_to order.id, order_path(order) %>  
+  <%= order.seller.email %>
+<% end %>
