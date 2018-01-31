@@ -1,6 +1,8 @@
 
 <% if current_seller.admin? %>
-  <%= link_to 'Visualizar todos pedidos', orders_path%>
+  <%= link_to 'Visualizar todos pedidos', orders_path %>
+<% else %>
+  <%= link_to 'Visualizar meus pedidos', orders_path %>
 <% end %>
 
 <%= link_to 'Novo Cliente', new_customer_path %>
