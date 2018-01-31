@@ -1,13 +1,11 @@
-<% form_for @order do |f| %>
+<h1>Novo pedido</h1>
+
+<%= form_for @order do |f| %>
 <div class="">
-  <% f.label :product_id, 'Produto' %>
-  <% f.collection_select :product_id, @products, :id , :name, {} %>
+  <%= f.label :category_id, 'Categoria' %>
+  <%= f.collection_select :category_id, @categories, :id , :name, {} %>
 </div>
 <div class="">
-  <% f.label :periodicity, 'Periodicidade' %>
-  <% f.select :periodicity, ['1 mês', '3 meses', '6 meses', '12 meses'] %>
-</div>
-<div class="">
-  <% f.submit 'Criar pedido' %>
+  <%= f.submit 'Criar pedido' %>
 </div>
 <% end %>

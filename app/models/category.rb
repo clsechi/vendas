@@ -1,4 +1,4 @@
-class Product
+class Category
 
   attr_accessor :id, :name
 
@@ -6,5 +6,5 @@ class Product
     @id = params["id"]
     @name = params["name"]
   end
-  
+
 end
