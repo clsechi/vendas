@@ -63,26 +63,6 @@ feature 'seller create customer' do
     expect(page).to have_content('Voce deve preencher todos os campos')
   end
   # cpf valido
-  scenario 'and must fill legal person fields correctly' do
-    seller = create(:seller)
-
-    login_as(seller)
-    visit root_path
-
-    click_on 'Novo Cliente'
-
-    fill_in 'Nome', with: 'Maria'
-    fill_in 'Endereco', with: 'rua das flores'
-    fill_in 'CPF', with: '777777777-77'
-    fill_in 'Email', with: 'email@email.com'
-    fill_in 'Telefone', with: '1199999999'
-    fill_in 'Data de Nascimento', with: '1988-02-29'
-
-    click_on 'Enviar'
-
-    expect(page).to have_content('CPF Invalido')
-  end
-
   # cnpj valido
   # campos diferentes para pessoa fisica e juridica
   # extras : validacao de data de nascimento e Telefone
