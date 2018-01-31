@@ -14,7 +14,10 @@ class CustomersController < ApplicationController
 
   def search
     @search_param = params[:search]
-    @customers = Customer.where('name like ?', "%#{@search_param}%")
+    @customers = Customer.where('name like ? OR cpf = ? OR cnpj = ?',
+                                "%#{@search_param}%", @search_param,
+                                @search_param)
+    flash[:notice] = 'Cliente nao encontrado' if @customers.empty?
   end
 
   private
