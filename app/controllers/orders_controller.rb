@@ -22,9 +22,14 @@ class OrdersController < ApplicationController
     @order.seller_id = current_seller.id
 
     if @order.save
+      OrderSender.send(@order)
       flash[:notice] = 'Pedido criado com sucesso!'
       redirect_to @order
-      #send data to painel
+
+#https://johnnunemaker.com/httparty/
+#https://ruby-doc.org/stdlib-2.4.2/libdoc/net/http/rdoc/Net/HTTP.html
+
+
     else
       @categories = get_categories
       render :new

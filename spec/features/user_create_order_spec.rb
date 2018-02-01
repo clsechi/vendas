@@ -18,4 +18,6 @@ feature 'user create order' do
     expect(page).to have_content('Categoria: 1')
     #expect(page).to have_content('Periodicidade: 3 meses')
   end
+
+  # testar se o metodo sender foi chamado com os parametros
 end
