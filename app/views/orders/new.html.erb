@@ -1,11 +1,12 @@
 <h1>Novo pedido</h1>
 
-<%= form_for @order do |f| %>
-<div class="">
-  <%= f.label :category_id, 'Categoria' %>
-  <%= f.collection_select :category_id, @categories, :id , :name, {} %>
-</div>
-<div class="">
-  <%= f.submit 'Criar pedido' %>
-</div>
+<%= form_with url: customer_orders_path do |f| %>
+
+  <% @categories.each do |cat| %>
+    <%= f.label cat.name %>
+    <%= f.radio_button cat.name, cat.id %>
+  <% end %>
+
+  <%= f.submit 'Próximo'  %>
+
 <% end %>

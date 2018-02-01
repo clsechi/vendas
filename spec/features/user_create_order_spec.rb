@@ -1,21 +1,17 @@
 require 'rails_helper'
 
-feature 'user create order' do
+feature 'seller chooses category and product' do
   scenario 'sucessfully' do
-    create(:customer)
+    customer = create(:customer)
     seller = create(:seller)
 
     login_as(seller)
-    visit new_order_path
-    page.select 'Hospedagem', from: 'Categoria'
+    visit new_customer_order_path(customer)
+    page.choose 'Hospedagem'
+    #colocar sleep para esperar a requisição
     #page.select 'Hospedagem de sites', from: 'Produto'
-    #page.select 'Hospedagem I', from: 'Plano'
-    #page.select 'Trimestral', from: 'Periodicidade'
-    click_on 'Criar pedido'
+    click_on 'Próximo'
 
-    expect(page).to have_content('Pedido criado com sucesso!')
-    #expect(current_path).to eq(client_orders_path)
-    expect(page).to have_content('Categoria: 1')
-    #expect(page).to have_content('Periodicidade: 3 meses')
+    expect(page).to have_css('h1', text: 'Selecione o Produto')
   end
 end

@@ -4,12 +4,28 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :orders, only:[:index, :show, :new, :create]
+  resources :orders, only:[:index]
 
-  resources :customers, only: [:new, :create, :show] do
+  resources :customers, only:[:new, :create, :show] do
     collection do
       get 'search'
     end
-  end
+    resources :orders, only:[:show, :new, :create] do
+      #get '/new', to: 'orders#categories'
+      #post ':category_id', to: 'orders#category', as: 'category'
 
+      get '/:category_id', to: 'orders#products', as: 'products'
+      post '/:category_id/:product_id', to: 'orders#product'
+
+      get '/:category_id/:product_id', to: 'orders#plans'
+      post '/:category_id/:product_id/:plan_id', to: 'orders#plan'
+
+      get '/:category_id/:product_id/:plan_id', to: 'orders#pers'
+      post '/:category_id/:product_id/:plan_id/:per_id', to: 'orders#per'
+
+      get '/:category_id/:product_id/:plan_id/:per_id', to: 'orders#confirm'
+      post '/:category_id/:product_id/:plan_id/:per_id/:status', to: 'orders#create'
+
+    end
+  end
 end
