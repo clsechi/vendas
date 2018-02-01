@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'user create order' do
   scenario 'sucessfully' do
-    create(:customer)
+    create(:customer, :legal)
     seller = create(:seller)
 
     login_as(seller)

@@ -14,7 +14,7 @@ feature 'seller create customer' do
     fill_in 'CPF', with: '777777777-77'
     fill_in 'Email', with: 'email@email.com'
     fill_in 'Telefone', with: '1199999999'
-    fill_in 'Data de Nascimento', with: '29/02/1988'
+    fill_in 'Data de Nascimento', with: '1988-02-29'
 
     click_on 'Enviar'
 
@@ -46,4 +46,26 @@ feature 'seller create customer' do
     expect(page).to have_content('floricultura da Maria')
     expect(page).to have_content('1199999999')
   end
+  scenario 'and must fill all fields' do
+    seller = create(:seller)
+
+    login_as(seller)
+    visit root_path
+    click_on 'Novo Cliente'
+
+    fill_in 'Nome', with: ''
+    fill_in 'Endereco', with: ''
+    fill_in 'Email', with: ''
+    fill_in 'Nome da Companhia', with: ''
+    fill_in 'Contato', with: ''
+    click_on 'Enviar'
+
+    expect(page).to have_content('Voce deve preencher todos os campos')
+  end
+  # cpf valido
+  # cnpj valido
+  # campos diferentes para pessoa fisica e juridica
+  # extras : validacao de data de nascimento e Telefone
+
+
 end
