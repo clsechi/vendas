@@ -23,3 +23,11 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 Style/SymbolArray:
   EnforcedStyle: brackets
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
+Naming/AccessorMethodName:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false

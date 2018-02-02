@@ -23,12 +23,12 @@ feature 'Admin create seller' do
     login_as(seller)
     visit root_path
 
-    expect(page).not_to have_link("Criar")
+    expect(page).not_to have_link('Criar')
   end
 
   scenario "Admin can't create the same seller twice" do
     admin = create(:seller, admin: true)
-    seller = create(:seller, email: 'vendedor@teste.com')
+    create(:seller, email: 'vendedor@teste.com')
     login_as(admin)
     visit root_path
     click_on 'Criar novo vendedor'
