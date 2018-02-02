@@ -18,8 +18,5 @@ feature 'user create order' do
     #expect(current_path).to eq(client_orders_path)
     expect(page).to have_content('Categoria: 1')
     #expect(page).to have_content('Periodicidade: 3 meses')
-
   end
-
-  # testar se o metodo sender foi chamado com os parametros
 end
