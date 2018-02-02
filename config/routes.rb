@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :orders, only:[:index]
+  resources :orders, only:[:index, :show]
 
   resources :customers, only:[:new, :create, :show] do
     collection do
@@ -19,9 +19,6 @@ Rails.application.routes.draw do
 
       get '/:category_id/:product_id', to: 'orders#plans', as: 'plans'
       post '/:category_id/:product_id', to: 'orders#plan', as: 'plan'
-
-      #get '/:category_id/:product_id/:plan_id', to: 'orders#pers'
-      #post '/:category_id/:product_id/:plan_id/:per_id', to: 'orders#per'
 
       get '/:category_id/:product_id/:plan_id/', to: 'orders#confirm', as: 'confirm'
       post '/:category_id/:product_id/:plan_id/:per_id/:status', to: 'orders#create', as: 'set_status'

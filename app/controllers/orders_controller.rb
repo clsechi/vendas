@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  # <%= link_to "Add Product", new_product_path(:param1 => "value1", :param2 => "value2") %>
 
   def index
     if current_seller.admin?
@@ -8,11 +7,6 @@ class OrdersController < ApplicationController
       @orders = Order.where(seller_id: current_seller)
     end
   end
-
-  #def new
-    #json = '[{"name": "Hospedagem", "id": 1, "periodicity": [{"period: "1 mês", value: "100,00"}]}]'
-    #@order.customer_id = params[:customer_id]
-  #end
 
   def new
     @categories = get_categories
@@ -58,7 +52,6 @@ class OrdersController < ApplicationController
     pl_id = params[:plan_id]
     pl_price = params[:price]
     if @order.update(plan_id: pl_id, price: pl_price)
-      pp @order
       redirect_to customer_order_confirm_path(@order.customer_id, @order.category_id,
          @order.id, @order.product_id, @order.plan_id)
     else
