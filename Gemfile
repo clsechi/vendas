@@ -42,15 +42,11 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   # gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.7'
-
   gem 'rubocop'
-
   gem 'simplecov'
-
   gem 'factory_bot_rails'
-
-  #gem 'rails-controller-testing'
-  #gem 'webmock'
+  gem 'rails-controller-testing'
+  gem 'webmock'
 end
 
 group :development do
