@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   # <%= link_to "Add Product", new_product_path(:param1 => "value1", :param2 => "value2") %>
-  before_action :set_order, only:[:create]
 
   def index
     if current_seller.admin?
@@ -16,18 +15,35 @@ class OrdersController < ApplicationController
   #end
 
   def new
-    #@order = Order.new
     @categories = get_categories
   end
 
   def create
+    @order = Order.new order_params
+    @order.customer_id = params[:customer_id]
+    @order.seller_id = current_seller.id
+    @order.category_id = 1
     if @order.save
       pp @order
-      redirect_to customer_order_products_path(@order.category_id)
-      #send data to painel
+      redirect_to customer_order_products_path(@order.customer_id, @order.id,
+        @order.category_id)
     else
       @categories = get_categories
       render :new
+    end
+  end
+
+  #lista todos os produtos
+  def products
+    @products = get_products
+  end
+
+  # salva id do produto
+  def product
+    if @order.update order_params
+      redirect_to customer_order_plans_path(@order.category_id, @order.product_id)
+    else
+      @products = get_products
     end
   end
 
@@ -44,12 +60,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.permit(:category_id)
-  end
-
-  def set_order
-    @order = Order.new order_params
-    @order.customer_id = params[:customer_id]
-    @order.seller_id = current_seller.id
+    params.permit(:product_id)
   end
 
   def get_categories
@@ -65,4 +76,17 @@ class OrdersController < ApplicationController
     categories
   end
 
+  def get_products
+    products_json = '[{"id": 1, "name": "Hospedagem de sites"}, {"id": 2, "name": "Registro de dominios"},
+     {"id": 3, "name": "SSL de Locaweb"}]'
+    products_hash = JSON.parse(products_json)
+
+    products = []
+
+    products_hash.each do |product|
+      products << Product.new(product)
+    end
+
+    products
+  end
 end
