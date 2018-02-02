@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
-  include OrdersSenderService
 
   def index
     if current_seller.admin?
