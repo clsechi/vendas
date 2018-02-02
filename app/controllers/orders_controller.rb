@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  before_action :authenticate_seller!, only: [:index, :new, :create, :show]
   def index
     if current_seller.admin?
       @orders = Order.all

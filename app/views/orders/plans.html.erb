@@ -5,6 +5,6 @@
 
   <p>Preço: <%= plan.price %> </p>
 
-  <%= link_to plan.name, customer_order_plan_path(plan_id: plan.id), method: :post %>
+  <%= link_to plan.name, customer_order_plan_path(plan_id: plan.id, price: plan.price), method: :post %>
 
 <% end %>

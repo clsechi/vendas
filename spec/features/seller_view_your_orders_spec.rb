@@ -4,7 +4,7 @@ feature 'seller views your orders' do
   scenario 'successfully' do
     seller = create(:seller)
     other_seller = create(:seller, email: 'teste321@teste.com')
-    customer = create(:customer)
+    customer = create(:customer, :legal)
     order = create(:order, customer: customer, seller: seller)
     other_order = create(:order, customer: customer, seller: other_seller)
 
@@ -21,7 +21,7 @@ feature 'seller views your orders' do
   scenario 'and view multiples orders' do
     seller = create(:seller)
     another_seller = create(:seller, email: 'teste321@teste.com')
-    customer = create(:customer)
+    customer = create(:customer, :legal)
     order = create(:order, customer: customer, seller: seller)
     other_order = create(:order, customer: customer, seller: seller)
     another_order = create(:order, customer: customer, seller: another_seller)
