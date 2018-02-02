@@ -16,6 +16,5 @@ module VendasLocaweb
     # -- all .rb files in that directory are automatically loaded.
 
     config.i18n.default_locale = :'pt-BR'
-    config.autoload_paths << "#{Rails.root}/app/services"
   end
 end
