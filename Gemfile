@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'httparty'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
   # console
@@ -50,7 +50,8 @@ group :development, :test do
 
   gem 'rails-controller-testing'
 
-  gem 'webmock'
+
+  #gem 'webmock'
 end
 
 group :development do

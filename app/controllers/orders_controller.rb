@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
+  include HTTParty
+  #base_uri 'painel.cliente.com'
+  base_uri 'https://06162072-025d-475c-883f-eb3a7407ffe6.mock.pstmn.io'
+
   def index
     if current_seller.admin?
       @orders = Order.all
@@ -22,14 +26,10 @@ class OrdersController < ApplicationController
     @order.seller_id = current_seller.id
 
     if @order.save
-      OrderSender.send(@order)
+      #OrderSenderService.send_post(@order)
+      send_post(@order)
       flash[:notice] = 'Pedido criado com sucesso!'
       redirect_to @order
-
-#https://johnnunemaker.com/httparty/
-#https://ruby-doc.org/stdlib-2.4.2/libdoc/net/http/rdoc/Net/HTTP.html
-
-
     else
       @categories = get_categories
       render :new
@@ -44,6 +44,12 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:category_id)
+  end
+
+  def send_post(order)
+    body = order.to_json
+    options = { :body => body }
+    self.class.post('/orders/new', options)
   end
 
   def get_categories
