@@ -3,7 +3,6 @@
 <%= form_with url: customer_orders_path do |f| %>
 
   <% @categories.each do |cat| %>
-    <%= f.label :category_id, cat.name %>
     <%= f.radio_button cat.name, cat.id, id: :category_id %>
   <% end %>
 
