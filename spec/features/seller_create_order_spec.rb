@@ -7,10 +7,9 @@ feature 'seller create order' do
 
     login_as(seller)
     visit new_customer_order_path(customer)
-    page.choose 'Hospedagem'
-    click_on 'Próximo'
+    click_on 'Hospedagem'
     #expect
-    expect(page).to have_content('Selecionar produto')
+    expect(page).to have_content('Selecione o produto')
   end
 
   scenario 'with category and product' do

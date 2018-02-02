@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       #post ':category_id', to: 'orders#category', as: 'category'
 
       get '/:category_id', to: 'orders#products', as: 'products'
-      post '/:category_id/:product_id', to: 'orders#product', as: 'product'
+      post '/:category_id', to: 'orders#product', as: 'product'
 
       get '/:category_id/:product_id', to: 'orders#plans', as: 'plans'
       post '/:category_id/:product_id/:plan_id', to: 'orders#plan', as: 'plan'

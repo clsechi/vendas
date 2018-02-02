@@ -19,12 +19,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new order_params
+    @order = Order.new
     @order.customer_id = params[:customer_id]
+    @order.category_id = params[:category_id]
     @order.seller_id = current_seller.id
-    @order.category_id = 1
     if @order.save
-      pp @order
       redirect_to customer_order_products_path(@order.customer_id, @order.id,
         @order.category_id)
     else
