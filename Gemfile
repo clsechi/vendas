@@ -33,6 +33,7 @@ gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'httparty'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
   # console
@@ -48,9 +49,7 @@ group :development, :test do
 
   gem 'factory_bot_rails'
 
-  gem 'rails-controller-testing'
-
-
+  #gem 'rails-controller-testing'
   #gem 'webmock'
 end
 

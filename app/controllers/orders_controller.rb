@@ -1,8 +1,11 @@
+# require "#{Rails.root}/app/services/orders_sender_service.rb"
+
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
-  include HTTParty
+  #include HTTParty
+  include OrdersSenderService
   #base_uri 'painel.cliente.com'
-  base_uri 'https://06162072-025d-475c-883f-eb3a7407ffe6.mock.pstmn.io'
+  #base_uri 'https://06162072-025d-475c-883f-eb3a7407ffe6.mock.pstmn.io'
 
   def index
     if current_seller.admin?
@@ -26,8 +29,11 @@ class OrdersController < ApplicationController
     @order.seller_id = current_seller.id
 
     if @order.save
-      #OrderSenderService.send_post(@order)
-      send_post(@order)
+      # OrdersSenderService.send_post(@order)
+      OrdersSenderService::OrdersService.send_post(@order)
+      # OrdersService.send_post(@order)
+
+      #send_post(@order)
       flash[:notice] = 'Pedido criado com sucesso!'
       redirect_to @order
     else
@@ -46,11 +52,11 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:category_id)
   end
 
-  def send_post(order)
-    body = order.to_json
-    options = { :body => body }
-    self.class.post('/orders/new', options)
-  end
+  # def send_post(order)
+  #   body = order.to_json
+  #   options = { :body => body }
+  #   self.class.post('/orders/new', options)
+  # end
 
   def get_categories
     categories_json = '[{"id": 1,"name": "Hospedagem"}, {"id": 2,"name": "Cloud e Servidores"},{"id": 3,"name": "Loja Virtual"} ]'
