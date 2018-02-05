@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  get '/new_seller', to: 'home#new_seller'
-  post '/create_seller', to: 'home#create_seller'
-  get '/seller/:id', to: 'home#show_seller'
+  resources :sellers, only:[:new, :show]
+  post 'sellers/create_seller', to: 'sellers#create_seller', as: 'create_seller'
+
 
   resources :orders, only:[:index, :show, :new, :create]
 

@@ -12,8 +12,8 @@ feature 'Admin create seller' do
     fill_in 'Nome', with: 'Vendedor Um'
     click_on 'Criar'
 
-    expect(page).to have_css('h1', 'Vendedor Um')
-    expect(page).to have_css('p', 'vendedor@teste.com')
+    expect(page).to have_content('Vendedor Um')
+    expect(page).to have_content('vendedor@teste.com')
     expect(page).to have_content('Vendedor criado com sucesso')
   end
 end

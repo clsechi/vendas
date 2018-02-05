@@ -12,7 +12,6 @@ class CustomersController < ApplicationController
       flash.now[:notice] = 'Voce deve preencher todos os campos'
       render 'new'
     end
-
   end
 
   def show
