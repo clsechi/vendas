@@ -9,7 +9,7 @@ class SellersController < ApplicationController
       flash[:notice] = 'Vendedor criado com sucesso'
       redirect_to @seller
     else
-      flash[:alert] = 'Usuário já cadstrado'
+      flash[:alert] = 'Usuário já cadastrado'
       redirect_to root_path
     end
   end

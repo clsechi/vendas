@@ -10,8 +10,9 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    # json = '[{"name": "Hospedagem", "id": 1,
-    # {}"periodicity": [{"period: "1 mes", value: "100,00"}]}]'
+    # json = '[{"name": "Hospedagem", "id": 1, "periodicity": [{"period: "1
+    # mes", value: "100,00"}]}]'
+
     @categories = get_categories
   end
 
@@ -41,6 +42,8 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:category_id)
   end
 
+  # Rubocop:
+  # Naming/AccessorMethodName:Do not prefix reader method names with get_
   def get_categories
     categories_json = '[{"id": 1,"name": "Hospedagem"}, '\
                       '{"id": 2,"name": "Cloud e Servidores"},{"id": '\
@@ -52,7 +55,6 @@ class OrdersController < ApplicationController
     categories_hash.each do |category|
       categories << Category.new(category)
     end
-
     categories
   end
 end
