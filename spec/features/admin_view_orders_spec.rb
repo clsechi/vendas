@@ -4,7 +4,7 @@ feature 'user views orders list' do
   scenario 'successfully' do
     admin = create(:seller, email: 'admin@email.com', admin: true)
     seller = create(:seller)
-    customer = create(:customer)
+    customer = create(:customer, :legal)
     order = create(:order, customer: customer, seller: seller)
 
     login_as(admin)
@@ -19,7 +19,7 @@ feature 'user views orders list' do
   scenario 'and admin views all orders' do
     admin = create(:seller, email: 'admin@email.com', admin: true)
     seller = create(:seller)
-    customer = create(:customer)
+    customer = create(:customer, :legal)
     order = create(:order, customer: customer, seller: seller)
 
     login_as(admin)
@@ -33,7 +33,7 @@ feature 'user views orders list' do
 
   scenario 'and other users cant see' do
     seller = create(:seller)
-    customer = create(:customer)
+    customer = create(:customer, :legal)
     create(:order, customer: customer, seller: seller)
 
     login_as(seller)
@@ -46,7 +46,7 @@ feature 'user views orders list' do
   scenario 'and admin views order owner' do
     admin = create(:seller, email: 'admin@email.com', admin: true)
     seller = create(:seller)
-    customer = create(:customer)
+    customer = create(:customer, :legal)
     order = create(:order, customer: customer, seller: seller)
 
     login_as(admin)

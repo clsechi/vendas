@@ -1,11 +1,18 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_seller!, only: [:new, :create, :show, :search]
   def new
     @customer = Customer.new
   end
 
   def create
     @customer = Customer.new(customer_params)
-    redirect_to @customer if @customer.save
+    if @customer.save
+      redirect_to @customer
+    else
+      flash.now[:notice] = 'Voce deve preencher todos os campos'
+      render 'new'
+    end
+
   end
 
   def show

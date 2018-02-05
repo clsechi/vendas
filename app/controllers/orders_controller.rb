@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
-  # <%= link_to "Add Product", new_product_path(:param1 => "value1", :param2 => "value2") %>
-  before_action :set_order, only:[:create]
-
+  before_action :authenticate_seller!, only: [:index, :new, :create, :show]
   def index
     if current_seller.admin?
       @orders = Order.all

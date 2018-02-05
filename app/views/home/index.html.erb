@@ -1,4 +1,4 @@
-
+<h4> <%= "Olá, #{current_seller.email}" %></h4>
 <% if current_seller.admin? %>
   <%= link_to 'Visualizar todos pedidos', orders_path %>
 <% else %>

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'seller chooses category and product' do
   scenario 'sucessfully' do
-    customer = create(:customer)
+    create(:customer, :legal)
     seller = create(:seller)
 
     login_as(seller)
