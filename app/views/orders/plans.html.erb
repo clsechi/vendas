@@ -3,8 +3,17 @@
 
 <% @plans.each do |plan| %>
 
-  <p>Preço: <%= plan.price %> </p>
+  <%= form_with url: customer_order_plan_path do |f| %>
 
-  <%= link_to plan.name, customer_order_plan_path(plan_id: plan.id, price: plan.price), method: :post %>
+    <%= plan.name  %>
+
+    <%= f.hidden_field :plan_id, value: plan.id %>
+    <br>
+    <%= f.label :periodicite, 'Preco'  %>
+    <%= f.collection_select :periodicite, plan.periodicites, :period , :name, {} %>
+
+    <%= f.submit 'Concluir' %>
+
+  <% end %>
 
 <% end %>

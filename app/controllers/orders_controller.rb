@@ -13,6 +13,10 @@ class OrdersController < ApplicationController
   end
 
   def create
+    #description no dois
+    #product key
+    #name
+    #value??
     @order = Order.new
     @order.customer_id = params[:customer_id]
     @order.category_id = params[:category_id]
@@ -101,9 +105,38 @@ class OrdersController < ApplicationController
   end
 
   def get_plans
-    plans_json = '[{"id": 1, "name": "Hospedagem I", "price": "60,00"}, {"id": 2, "name": "Hospedagem II", "price": "100,00"},
-                    {"id": 3, "name": "Hospedagem III", "price": "150,00"}]'
+    plans_json = '[{"id": 1, "name": "Hospedagem I", "periodicites":[{ "period": 1,
+                                                                      "price": 20.99 },
+                                                                      {"period": 3,
+                                                                      "price": 40 },
+                                                                      {"period": 6,
+                                                                      "price": 50 },
+                                                                      {"period": 12,
+                                                                      "price": 50}
+                                                                      ]
+                                                                    },
+                  {"id": 2, "name": "Hospedagem II", "periodicites":[{ "period": 1,
+                                                                      "price": 20 },
+                                                                      {"period": 3,
+                                                                      "price": 40 },
+                                                                      {"period": 6,
+                                                                      "price": 50 },
+                                                                      {"period": 12,
+                                                                      "price": 50 }
+                                                                      ]
+                                                                    },
+                    {"id": 3, "name": "Hospedagem III", "periodicites":[{ "period": 1,
+                                                                      "price": 20 },
+                                                                      {"period": 3,
+                                                                      "price": 40 },
+                                                                      {"period": 6,
+                                                                      "price": 50 },
+                                                                      {"period": 12,
+                                                                      "price": 50}
+                                                                      ]
+                                                                    }]'
     plans_hash = JSON.parse(plans_json)
+    pp plans_hash
     plans = []
 
     plans_hash.each do |plan|

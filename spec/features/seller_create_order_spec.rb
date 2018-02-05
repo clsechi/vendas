@@ -36,11 +36,26 @@ feature 'seller create order' do
     visit new_customer_order_path(customer)
     click_on 'Hospedagem'
     click_on 'Hospedagem de sites'
-    click_on 'Hospedagem I'
+    #click_on 'Hospedagem I'
+    #select
+    click_on 'Próximo'
 
     expect(page).to have_content('Categoria: Hospedagem')
     expect(page).to have_content('Produto: Hospedagem de sites')
     expect(page).to have_content('Plano: Hospedagem I')
+  end
+
+  scenario 'and confirms' do
+    customer = create(:customer, :legal)
+    seller = create(:seller)
+
+    login_as(seller)
+    visit new_customer_order_path(customer)
+    click_on 'Hospedagem'
+    click_on 'Hospedagem de sites'
+    click_on 'Hospedagem I'
+    click_on 'Confirmar pedido'
+
   end
 
 
