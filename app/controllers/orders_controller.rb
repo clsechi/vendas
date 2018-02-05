@@ -16,19 +16,13 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new order_params
-
     @order.customer_id = current_seller.id
     @order.seller_id = current_seller.id
 
     if @order.save
-      if OrdersSenderService::OrdersService.send_post(@order)
-        flash[:notice] = 'Pedido criado com sucesso!'
-      else
-        flash[:notice] = 'Pedido criado com sucesso, mas não enviado'
-      end
+      send_order
       redirect_to @order
     else
-      @categories = parse_categories
       render :new
     end
   end
@@ -38,6 +32,14 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def send_order
+    flash[:notice] = if OrdersSenderService::OrdersService.send_post(@order)
+                       'Pedido criado com sucesso!'
+                     else
+                       'Pedido criado com sucesso, mas não enviado'
+                     end
+  end
 
   def order_params
     params.require(:order).permit(:category_id)
