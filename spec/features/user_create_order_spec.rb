@@ -14,7 +14,7 @@ feature 'user create order' do
     expect(OrdersSenderService::OrdersService).to receive(:send_post)
     click_on 'Criar pedido'
 
-    expect(page).to have_content('Pedido criado com sucesso!')
+    expect(page).to have_content('Pedido criado com sucesso, mas não enviado')
     #expect(current_path).to eq(client_orders_path)
     expect(page).to have_content('Categoria: 1')
     #expect(page).to have_content('Periodicidade: 3 meses')

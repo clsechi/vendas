@@ -21,8 +21,11 @@ class OrdersController < ApplicationController
     @order.seller_id = current_seller.id
 
     if @order.save
-      OrdersSenderService::OrdersService.send_post(@order)
-      flash[:notice] = 'Pedido criado com sucesso!'
+      if OrdersSenderService::OrdersService.send_post(@order)
+        flash[:notice] = 'Pedido criado com sucesso!'
+      else
+        flash[:notice] = 'Pedido criado com sucesso, mas não enviado'
+      end
       redirect_to @order
     else
       @categories = get_categories

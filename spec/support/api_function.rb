@@ -4,7 +4,6 @@ module ApiFunctions
   end
 
   def url_order
-    "/api/orders"
+    '/api/orders'
   end
-
 end

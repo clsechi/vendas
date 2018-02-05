@@ -2,15 +2,18 @@ module OrdersSenderService
   class OrdersService
     include HTTParty
     #base_uri 'painel.cliente.com'
-    base_uri 'https://06162072-025d-475c-883f-eb3a7407ffe6.mock.pstmn.io'
-
-    def initialize
-    end
+    base_uri 'https://06162072.mock.pstmn.io'
 
     def self.send_post(order)
-      body = order.to_json
-      options = { "body": body }
-      self.post('/orders/new', options)
+      options = { 'body': order.to_json }
+      response = self.post('/orders', options)
+
+      if response.success?
+        return true
+      else
+        raise StandardError, 'Erro interno no envio para API'
+      end
     end
+
   end
 end
