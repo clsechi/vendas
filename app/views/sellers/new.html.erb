@@ -1,0 +1,17 @@
+<%= form_for(@seller, url:{action: 'create_seller'}) do |f| %>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :password, 'Senha' %>
+    <%= f.text_field :password %>
+  </div>
+  <div>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.submit 'Criar' %>
+  </div>
+<% end %>

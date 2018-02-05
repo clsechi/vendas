@@ -56,6 +56,6 @@ feature 'user views orders list' do
     click_on 'Visualizar todos pedidos'
 
     expect(page).to have_link(order.id)
-    expect(page).to have_content(order.seller.email)
+    expect(page).to have_content(order.seller.name)
   end
 end
