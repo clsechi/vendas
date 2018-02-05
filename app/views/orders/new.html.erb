@@ -1,12 +1,7 @@
 <h1>Novo pedido</h1>
 
-<%= form_with url: customer_orders_path do |f| %>
+<% @categories.each do |cat| %>
 
-  <% @categories.each do |cat| %>
-    <%= f.label cat.name %>
-    <%= f.radio_button cat.name, cat.id %>
-  <% end %>
-
-  <%= f.submit 'Próximo'  %>
+  <%= link_to cat.name, customer_orders_path(category_id: cat.id, ), method: :post %>
 
 <% end %>
