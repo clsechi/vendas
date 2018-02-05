@@ -66,6 +66,4 @@ feature 'seller create customer' do
   # cnpj valido
   # campos diferentes para pessoa fisica e juridica
   # extras : validacao de data de nascimento e Telefone
-
-
 end
