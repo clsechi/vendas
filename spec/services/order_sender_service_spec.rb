@@ -9,7 +9,8 @@ RSpec.describe OrdersSenderService do
 
       login_as seller
       body = order.to_json
-      url = 'https://06162072.mock.pstmn.io/orders'
+      url = "#{Rails.configuration.sales['host']}"\
+            "#{Rails.configuration.sales['send_order']}"
 
       stub_request(:post, url)
         .with(
@@ -34,7 +35,8 @@ RSpec.describe OrdersSenderService do
 
       login_as seller
       body = order.to_json
-      url = 'https://06162072.mock.pstmn.io/orders'
+      url = "#{Rails.configuration.sales['host']}"\
+            "#{Rails.configuration.sales['send_order']}"
 
       stub_request(:post, url)
         .with(
