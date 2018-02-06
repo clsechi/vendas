@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
     @order.seller_id = current_seller.id
 
     if @order.save
+      send_email(@order.id)
       send_order
       redirect_to @order
     else
@@ -32,6 +33,11 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def send_email(order_id)
+    order = Order.find(order_id)
+    OrderMailer.order_email(order).deliver_now
+  end
 
   def send_order
     flash[:notice] = if OrdersSenderService::OrdersService.send_post(@order)
