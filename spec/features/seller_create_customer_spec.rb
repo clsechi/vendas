@@ -62,6 +62,24 @@ feature 'seller create customer' do
 
     expect(page).to have_content('Voce deve preencher todos os campos')
   end
+  scenario 'and email is unique' do
+    seller = create(:seller)
+    customer = create(:customer, :legal, email: 'email@repetido.com')
+
+    login_as(seller)
+    visit root_path
+    click_on 'Novo Cliente'
+
+    fill_in 'Nome', with: 'Maria'
+    fill_in 'Endereco', with: 'rua das flores'
+    fill_in 'CNPJ', with: '93.167.578/0001-18'
+    fill_in 'Email', with: customer.email
+    fill_in 'Nome da Companhia', with: 'floricultura da Maria'
+    fill_in 'Contato', with: '1199999999'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Email tem que ser unico')
+  end
   # cpf valido
   # cnpj valido
   # campos diferentes para pessoa fisica e juridica
