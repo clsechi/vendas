@@ -15,6 +15,8 @@ module VendasLocaweb
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+     config.sales = config_for(:sales)
+
     config.i18n.default_locale = :'pt-BR'
   end
 end

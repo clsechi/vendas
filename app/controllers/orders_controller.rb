@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
+
   def index
     @orders = if current_seller.admin?
                 Order.all
@@ -10,23 +11,19 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    # json = '[{"name": "Hospedagem", "id": 1, "periodicity": [{"period: "1
-    # mes", value: "100,00"}]}]'
-
     @categories = parse_categories
   end
 
   def create
     @order = Order.new order_params
-
     @order.customer_id = current_seller.id
     @order.seller_id = current_seller.id
 
     if @order.save
       send_email(@order.id)
-      redirect_to @order, notice: 'Pedido criado com sucesso!'
+      send_order
+      redirect_to @order
     else
-      @categories = parse_categories
       render :new
     end
   end
@@ -40,6 +37,14 @@ class OrdersController < ApplicationController
   def send_email(order_id)
     order = Order.find(order_id)
     OrderMailer.order_email(order).deliver_now
+  end
+
+  def send_order
+    flash[:notice] = if OrdersSenderService::OrdersService.send_post(@order)
+                       'Pedido criado com sucesso!'
+                     else
+                       'Pedido criado com sucesso, mas não enviado'
+                     end
   end
 
   def order_params
