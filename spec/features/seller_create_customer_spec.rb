@@ -7,6 +7,8 @@ feature 'seller create customer' do
     login_as(seller)
     visit root_path
 
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
@@ -29,6 +31,8 @@ feature 'seller create customer' do
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
@@ -51,6 +55,8 @@ feature 'seller create customer' do
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: ''

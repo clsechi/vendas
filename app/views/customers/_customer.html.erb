@@ -1,5 +1,9 @@
-<% @customers.each do |customer| %>
- <%= link_to customer.name, customer_path(customer) %>
- <%= customer.cpf %>
- <%= customer.phone %>
+<% if @customers.any? %>
+  <% @customers.each do |customer| %>
+   <%= link_to customer.name, customer_path(customer) %>
+   <%= customer.cpf %>
+   <%= customer.phone %>
+  <% end %>
+<% else %>
+  <%= link_to 'Novo Cliente', new_customer_path %>
 <% end %>
