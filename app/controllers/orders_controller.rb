@@ -99,25 +99,30 @@ class OrdersController < ApplicationController
   end
 
   def get_categories
-    categories_json = '[{"id": 1,"name": "Hospedagem"}, {"id": 2,"name": "Cloud e Servidores"},{"id": 3,"name": "Loja Virtual"} ]'
+
+    #uri = URI('http://localhost:3001/api/categories')
+    #categories_json = Net::HTTP.get(uri)
+    #categories_json = '[{"id": 1,"name": "Hospedagem"}, {"id": 2,"name": "Cloud e Servidores"},{"id": 3,"name": "Loja Virtual"} ]'
     categories_hash = JSON.parse(categories_json)
+
+    pp categories_hash
 
     categories = []
 
-    categories_hash.each do |category|
+    categories_hash['categories'].each do |category|
       categories << Category.new(category)
     end
     categories
   end
 
   def get_products
-    products_json = '[{"id": 1, "name": "Hospedagem de sites"}, {"id": 2, "name": "Registro de dominios"},
-     {"id": 3, "name": "SSL de Locaweb"}]'
+    products_json = '{"products":[{"id": 1, "name": "Hospedagem de sites"}, {"id": 2, "name": "Registro de dominios"},
+     {"id": 3, "name": "SSL de Locaweb"}]}'
     products_hash = JSON.parse(products_json)
 
     products = []
 
-    products_hash.each do |product|
+    products_hash['products'].each do |product|
       products << Product.new(product)
     end
     products
@@ -142,12 +147,12 @@ class OrdersController < ApplicationController
    {
       "id":1,
       "value":20,
-      "periodicite":[
+      "periodicite":
          {
             "name":"Mensal",
             "period":1
          }
-      ]
+      
    },
    {
       "id":2,

@@ -4,11 +4,11 @@ class Price
 
   def initialize(params)
     @value = params["value"]
-    @periodicites = params["periodicites"]
+    @periodicites = params["periodicite"]
   end
 
-  def periodicites
-    periodicite = Periodicite.new(@periodicite)
+  def per
+    periodicite = Periodicite.new(@periodicites)
   end
 
   # def find_price(period)

@@ -13,7 +13,7 @@
     <% f.hidden_field :price, value: price.value %>
     <br>
     <%= f.label :periodicite, 'Preço'  %>
-    <%= f.collection_select :periodicite, price.periodicites, :period , :name, {} %>
+    <%= f.collection_select :periodicite, price.per, :period , :name, {} %>
 
     <%= f.submit 'Próximo' %>
   <% end %>
