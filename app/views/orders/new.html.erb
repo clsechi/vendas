@@ -2,6 +2,6 @@
 
 <% @categories.each do |cat| %>
 
-  <%= link_to cat.name, customer_orders_path(category_id: cat.id, ), method: :post %>
+  <%= link_to cat.name, customer_orders_path(category_id: cat.id, category_name: cat.name ), method: :post %>
 
 <% end %>

@@ -1,0 +1,20 @@
+<h1>Novo pedido</h1>
+<h2>Selecione a cobraca</h2>
+<p>Categoria: <%= session[:category_name] %></p>
+<p>Produto: <%= session[:product_name] %></p>
+<p>Plano: <%= session[:plan_name] %></p>
+
+<% @prices.each do |price| %>
+
+  <%= form_with url: customer_order_set_price_path do |f| %>
+
+    <%=f.label :price, price.value  %>
+
+    <% f.hidden_field :price, value: price.value %>
+    <br>
+    <%= f.label :periodicite, 'Preço'  %>
+    <%= f.collection_select :periodicite, price.periodicites, :period , :name, {} %>
+
+    <%= f.submit 'Próximo' %>
+  <% end %>
+<% end %>

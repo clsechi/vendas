@@ -38,7 +38,7 @@ feature 'seller create order' do
     click_on 'Hospedagem de sites'
     #click_on 'Hospedagem I'
     #select
-    click_on 'Próximo'
+    click_button('Próximo', match: :first)
 
     expect(page).to have_content('Categoria: Hospedagem')
     expect(page).to have_content('Produto: Hospedagem de sites')

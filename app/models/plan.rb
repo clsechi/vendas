@@ -1,18 +1,10 @@
 class Plan
 
-  attr_accessor :id, :name, :periodicites
+  attr_accessor :id, :name, :description
 
   def initialize(params)
-    @periodicites = params["periodicites"]
     @id = params["id"]
     @name = params["name"]
-  end
-
-  def periodicites
-    periodicite = []
-    @periodicites.each do |per|
-      periodicite << Periodicite.new(per)
-    end
-    periodicite
+    @description = params["description"]
   end
 end

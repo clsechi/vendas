@@ -1,9 +1,9 @@
 <h1>Novo pedido</h1>
 <h2>Selecione o produto</h2>
-<%  %>
+<p>Categoria: <%= session[:category_name] %></p>
 
 <% @products.each do |prod| %>
 
-  <%= link_to prod.name, customer_order_product_path(product_id: prod.id), method: :post %>
+  <%= link_to prod.name, customer_order_product_path(product_id: prod.id, product_name: prod.name), method: :post %>
 
 <% end %>
