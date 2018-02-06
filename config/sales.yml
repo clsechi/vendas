@@ -1,9 +1,9 @@
 production:
-  host: https://paineldocliente.locaweb.com
-  send_order: /orders
+  host: http://paineldocliente.locaweb.com
+  send_order: /api/order
 development:
-  host: https://localhost:5000
-  send_order: /orders
+  host: http://localhost:5000
+  send_order: /api/order
 test:
-  host: https://paineldocliente.fake.com.br
-  send_order: /orders
+  host: http://paineldocliente.fake.com.br
+  send_order: /api/order
