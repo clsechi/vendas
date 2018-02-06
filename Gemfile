@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'httparty'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
@@ -40,13 +41,12 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   # gem 'selenium-webdriver'
-  gem 'rspec-rails', '~> 3.7'
-
-  gem 'rubocop'
-
-  gem 'simplecov'
-
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'rubocop'
+  gem 'simplecov'
+  gem 'webmock'
 end
 
 group :development do
