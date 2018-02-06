@@ -8,18 +8,13 @@ RSpec.describe OrdersSenderService do
       order = create(:order, seller: seller, customer: customer)
 
       login_as seller
-      body = order.to_json
+      body = { 'order': order.to_json, 'customer': order.customer.to_json }
       url = "#{Rails.configuration.sales['host']}"\
             "#{Rails.configuration.sales['send_order']}"
 
       stub_request(:post, url)
         .with(
-          body: body,
-          headers: {
-            'Accept' => '*/*',
-            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'User-Agent' => 'Ruby'
-          }
+          body: body
         ).to_return(status: 200, body: '', headers: {})
 
       response = OrdersSenderService::OrdersService.send_post(order)
@@ -34,18 +29,13 @@ RSpec.describe OrdersSenderService do
       order = create(:order, seller: seller, customer: customer)
 
       login_as seller
-      body = order.to_json
+      body = { 'order': order.to_json, 'customer': order.customer.to_json }
       url = "#{Rails.configuration.sales['host']}"\
             "#{Rails.configuration.sales['send_order']}"
 
       stub_request(:post, url)
         .with(
-          body: body,
-          headers: {
-            'Accept' => '*/*',
-            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'User-Agent' => 'Ruby'
-          }
+          body: body
         ).to_return(status: 500, body: '', headers: {})
 
       expect { OrdersSenderService::OrdersService.send_post(order) }
