@@ -23,9 +23,8 @@ class OrdersController < ApplicationController
     @order.seller_id = current_seller.id
 
     if @order.save
-      flash[:notice] = 'Pedido criado com sucesso!'
-      redirect_to @order
-      # send data to painel
+      send_email(@order)
+      redirect_to @order, notice: 'Pedido criado com sucesso!'
     else
       @categories = parse_categories
       render :new
@@ -37,6 +36,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def send_email(order)
+    OrderMailer.order_email(order).deliver_now
+  end
 
   def order_params
     params.require(:order).permit(:category_id)

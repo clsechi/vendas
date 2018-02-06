@@ -18,4 +18,17 @@ feature 'user create order' do
     expect(page).to have_content('Categoria: 1')
     # expect(page).to have_content('Periodicidade: 3 meses')
   end
+
+  scenario 'and system sends email' do
+    seller = create(:seller)
+
+    login_as(seller)
+    visit new_order_path
+    page.select 'Hospedagem', from: 'Categoria'
+    click_on 'Criar pedido'
+
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.subject).to eq 'Pedido realizado com sucesso'
+    expect(mail.from).to include 'no-reply@locaweb.com.br'
+  end
 end
