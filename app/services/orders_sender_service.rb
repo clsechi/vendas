@@ -4,7 +4,7 @@ module OrdersSenderService
     base_uri 'https://06162072.mock.pstmn.io'
 
     def self.send_post(order)
-      options = { 'body': order.to_json }
+      options = { 'body': order.to_json, 'customer': order.customer.to_json }
       response = post('/orders', options)
 
       unless response.success?
