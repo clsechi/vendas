@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     @order.seller_id = current_seller.id
 
     if @order.save
-      send_email(@order)
+      send_email(@order.id)
       redirect_to @order, notice: 'Pedido criado com sucesso!'
     else
       @categories = parse_categories
@@ -37,7 +37,8 @@ class OrdersController < ApplicationController
 
   private
 
-  def send_email(order)
+  def send_email(order_id)
+    order = Order.find(order_id)
     OrderMailer.order_email(order).deliver_now
   end
 
