@@ -4,7 +4,9 @@ module OrdersSenderService
     base_uri Rails.configuration.sales['host']
 
     def self.send_post(order)
-      options = { 'body': order.to_json, 'customer': order.customer.to_json }
+      options = { 'body':
+                      { 'order': order.to_json,
+                        'customer': order.customer.to_json } }
       response = post(Rails.configuration.sales['send_order'], options)
 
       unless response.success?

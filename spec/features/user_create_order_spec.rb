@@ -14,4 +14,19 @@ feature 'user create order' do
     expect(page).to have_content('Pedido criado com sucesso, mas não enviado')
     expect(page).to have_content('Categoria: 1')
   end
+
+  scenario 'and system sends email' do
+    create(:customer, :legal)
+    seller = create(:seller)
+
+    login_as(seller)
+    visit new_order_path
+    page.select 'Hospedagem', from: 'Categoria'
+    expect(OrdersSenderService::OrdersService).to receive(:send_post)
+    click_on 'Criar pedido'
+
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.subject).to eq 'Pedido realizado com sucesso'
+    expect(mail.from).to include 'no-reply@locaweb.com.br'
+  end
 end
