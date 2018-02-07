@@ -1,8 +1,9 @@
-class Periodicite
+class Periodicity
 
-  attr_accessor :name, :period
+  attr_accessor :id, :name, :period
 
   def initialize(params)
+    @id = params["id"]
     @name = params["name"]
     @period = params["period"]
   end

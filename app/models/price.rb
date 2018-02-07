@@ -1,24 +1,17 @@
 class Price
 
-  attr_accessor :value, :periodicites
+  attr_accessor :value, :periodicity
 
   def initialize(params)
     @value = params["value"]
-    @periodicites = params["periodicite"]
+    @periodicity = params["periodicity"]
   end
 
   def per
-    periodicite = Periodicite.new(@periodicites)
+    Periodicity.new(@periodicity)
   end
 
-  # def find_price(period)
-  #   price = ''
-  #   periodicites.each do |p|
-  #     if p.period == period
-  #       price = p.price
-  #     end
-  #   end
-  #   price
-  # end
-
+  def name
+    "#{per.name} - R$ #{@value}"
+  end
 end
