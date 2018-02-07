@@ -9,9 +9,11 @@
   </head>
 
   <body>
+    <% if seller_signed_in?  %>
+      <%= link_to 'Sair', destroy_seller_session_path, method: :delete %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
     <%= yield %>
   </body>
 </html>

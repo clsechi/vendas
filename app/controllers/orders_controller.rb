@@ -1,15 +1,16 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
+
   def index
-    if current_seller.admin?
-      @orders = Order.all
-    else
-      @orders = Order.where(seller_id: current_seller)
-    end
+    @orders = if current_seller.admin?
+                Order.all
+              else
+                Order.where(seller_id: current_seller)
+              end
   end
 
   def new
-    @categories = get_categories
+    @categories = parse_categories
   end
 
   def create
@@ -17,11 +18,13 @@ class OrdersController < ApplicationController
     @order.customer_id = params[:customer_id]
     @order.category_id = params[:category_id]
     set_session('category_name', params[:category_name])
+
     @order.seller_id = current_seller.id
     if @order.save
+      send_email(@order.id)
+      # send_order
       redirect_to customer_order_products_path(@order.customer, @order)
     else
-      @categories = get_categories
       render :new
     end
   end
@@ -89,16 +92,17 @@ class OrdersController < ApplicationController
 
   private
 
+
   def set_session(session_name, session_value)
     session_name = session_name.to_sym
     session[session_name] = session_value
   end
 
-  def get_categories
+  def parse_categories
 
-    uri = URI('http://localhost:3001/api/categories')
-    categories_json = Net::HTTP.get(uri)
-    #categories_json = '{"categories":[{"id": 1,"name": "Hospedagem"}, {"id": 2,"name": "Cloud e Servidores"},{"id": 3,"name": "Loja Virtual"}]}'
+    # uri = URI('http://localhost:3001/api/categories')
+    # categories_json = Net::HTTP.get(uri)
+    categories_json = '{"categories":[{"id": 1,"name": "Hospedagem"}, {"id": 2,"name": "Cloud e Servidores"},{"id": 3,"name": "Loja Virtual"}]}'
     categories_hash = JSON.parse(categories_json)
 
     categories = []
@@ -165,5 +169,22 @@ class OrdersController < ApplicationController
       prices << Price.new(price)
     end
     prices
+  end
+
+  def send_email(order_id)
+    order = Order.find(order_id)
+    OrderMailer.order_email(order).deliver_now
+  end
+
+  def send_order
+    flash[:notice] = if OrdersSenderService::OrdersService.send_post(@order)
+                       'Pedido criado com sucesso!'
+                     else
+                       'Pedido criado com sucesso, mas não enviado'
+                     end
+  end
+
+  def order_params
+    params.require(:order).permit(:category_id)
   end
 end

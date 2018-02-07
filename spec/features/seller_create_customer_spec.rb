@@ -7,6 +7,8 @@ feature 'seller create customer' do
     login_as(seller)
     visit root_path
 
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
@@ -29,6 +31,8 @@ feature 'seller create customer' do
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
@@ -51,6 +55,8 @@ feature 'seller create customer' do
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: ''
@@ -62,10 +68,68 @@ feature 'seller create customer' do
 
     expect(page).to have_content('Voce deve preencher todos os campos')
   end
+  scenario 'and email is unique' do
+    seller = create(:seller)
+    create(:customer, :legal, email: 'email@repetido.com')
+
+    login_as(seller)
+    visit root_path
+    fill_in 'Busca', with: '93.167.578/0001-18'
+    click_on 'Pesquisar cliente'
+    click_on 'Novo Cliente'
+
+    fill_in 'Nome', with: 'Maria'
+    fill_in 'Endereco', with: 'rua das flores'
+    fill_in 'CNPJ', with: '93.167.578/0001-18'
+    fill_in 'Email', with: 'email@repetido.com'
+    fill_in 'Nome da Companhia', with: 'floricultura da Maria'
+    fill_in 'Contato', with: '1199999999'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Email já está em uso')
+  end
+  scenario 'and cpf is unique' do
+    seller = create(:seller)
+    customer = create(:customer, :legal, cpf: '268.321.401-42')
+
+    login_as(seller)
+    visit root_path
+    fill_in 'Busca', with: customer.name
+    click_on 'Pesquisar cliente'
+    click_on 'Novo Cliente'
+
+    fill_in 'Nome', with: 'Maria'
+    fill_in 'Endereco', with: 'rua das flores'
+    fill_in 'CPF', with: '268.321.401-42'
+    fill_in 'Email', with: 'email@email.com'
+    fill_in 'Telefone', with: '1199999999'
+    fill_in 'Data de Nascimento', with: '1988-02-29'
+    click_on 'Enviar'
+
+    expect(page).to have_content('CPF já está em uso')
+  end
+  scenario 'and cnpj is unique' do
+    seller = create(:seller)
+    customer = create(:customer, :company, cnpj: '89.495.945/0001-35')
+
+    login_as(seller)
+    visit root_path
+    fill_in 'Busca', with: customer.name
+    click_on 'Pesquisar cliente'
+    click_on 'Novo Cliente'
+
+    fill_in 'Nome', with: 'Maria'
+    fill_in 'Endereco', with: 'rua das flores'
+    fill_in 'CNPJ', with: '89.495.945/0001-35'
+    fill_in 'Email', with: 'email@email.com'
+    fill_in 'Nome da Companhia', with: 'floricultura da Maria'
+    fill_in 'Contato', with: '1199999999'
+    click_on 'Enviar'
+
+    expect(page).to have_content('CNPJ já está em uso')
+  end
   # cpf valido
   # cnpj valido
   # campos diferentes para pessoa fisica e juridica
   # extras : validacao de data de nascimento e Telefone
-
-
 end

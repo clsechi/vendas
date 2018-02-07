@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :orders, only:[:index, :show]
+  resources :sellers, only:[:new, :show]
 
-  resources :customers, only:[:new, :create, :show] do
+  post 'sellers/create_seller', to: 'sellers#create_seller', as: 'create_seller'
+
+  resources :customers, only: [:new, :create, :show, :edit, :update] do
     collection do
       get 'search'
     end
@@ -25,5 +28,6 @@ Rails.application.routes.draw do
       post 'confirm', to: 'orders#confirm', as: 'confirm'
 
     end
+
   end
 end

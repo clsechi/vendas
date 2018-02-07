@@ -1,4 +1,5 @@
 <% @orders.each do |order|%>
   <%= link_to order.id, order_path(order) %>
-  <%= order.seller.email %>
+  <%= order.seller.name %>
 <% end %>
+<%= link_to 'Voltar', root_path %>

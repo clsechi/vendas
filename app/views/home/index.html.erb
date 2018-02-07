@@ -1,6 +1,7 @@
 <h4> <%= "Olá, #{current_seller.email}" %></h4>
 <% if current_seller.admin? %>
   <%= link_to 'Visualizar todos pedidos', orders_path %>
+  <%= link_to 'Criar novo vendedor',  new_seller_path %>
 <% else %>
   <%= link_to 'Visualizar meus pedidos', orders_path %>
 <% end %>
@@ -10,5 +11,3 @@
   <%= text_field_tag(:search) %>
   <%= submit_tag("Pesquisar cliente") %>
 <% end %>
-
-<%= link_to 'Novo Cliente', new_customer_path %>

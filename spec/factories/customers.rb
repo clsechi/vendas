@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :customer do
-    name 'MyString'
+    name 'Lucca'
     address 'MyString'
-    email 'MyString'
+    email '123@teste.com'
 
     trait :legal do
       cpf 'MyString'

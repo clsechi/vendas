@@ -10,13 +10,27 @@ class CustomersController < ApplicationController
       redirect_to @customer
     else
       flash.now[:notice] = 'Voce deve preencher todos os campos'
-      render 'new'
+      render :new
     end
-
   end
 
   def show
     @customer = Customer.find(params[:id])
+  end
+
+  def edit
+    @customer = Customer.find(params[:id])
+  end
+
+  def update
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+      redirect_to @customer
+      flash.now[:success] = 'Cliente atualizado com sucesso'
+    else
+      flash.now[:notice] = 'Voce deve preencher todos os campos'
+      render :edit
+    end
   end
 
   def search
