@@ -7,6 +7,8 @@ feature 'seller create customer' do
     login_as(seller)
     visit root_path
 
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
@@ -29,6 +31,8 @@ feature 'seller create customer' do
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
@@ -51,6 +55,8 @@ feature 'seller create customer' do
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: '777777777-77'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: ''
@@ -68,6 +74,8 @@ feature 'seller create customer' do
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: '93.167.578/0001-18'
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
@@ -82,10 +90,12 @@ feature 'seller create customer' do
   end
   scenario 'and cpf is unique' do
     seller = create(:seller)
-    create(:customer, :legal, cpf: '268.321.401-42')
+    customer = create(:customer, :legal, cpf: '268.321.401-42')
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: customer.name
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
@@ -100,10 +110,12 @@ feature 'seller create customer' do
   end
   scenario 'and cnpj is unique' do
     seller = create(:seller)
-    create(:customer, :company, cnpj: '89.495.945/0001-35')
+    customer = create(:customer, :company, cnpj: '89.495.945/0001-35')
 
     login_as(seller)
     visit root_path
+    fill_in 'Busca', with: customer.name
+    click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
     fill_in 'Nome', with: 'Maria'
