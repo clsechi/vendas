@@ -1,6 +1,21 @@
-<% @customers.each do |customer| %>
-  <%= link_to customer.name, customer_path(customer) %>
-  <%= customer.cpf %>
-  <%= customer.phone %>
-<% end %>
-<%= link_to 'Novo Cliente', new_customer_path %>
+<table class='ls-table'>
+  <thead>
+    <tr>
+      <th>Nome do Cliente</th>
+      <th>CPF/CNPJ</th>
+      <th colspan="2">Telefone</th>
+    <tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= link_to customer.name, customer_path(customer) %></td>
+        <td><%= customer.cpf %></td>
+        <td><%= customer.phone %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Novo Cliente', new_customer_path, class:'ls-btn-primary' %></p>
+<p><%= link_to 'Voltar', root_path , class:'ls-btn'%></p>

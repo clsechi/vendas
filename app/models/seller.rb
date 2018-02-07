@@ -5,4 +5,6 @@ class Seller < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :orders
+
+  validates :name, presence:true
 end

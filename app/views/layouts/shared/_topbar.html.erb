@@ -11,12 +11,13 @@
 
         <nav class="ls-dropdown-nav ls-user-menu">
           <ul>
-            <li>
-              <%= link_to 'Minhas vendas', destroy_seller_session_path %>
-            </li>
-            <li>
-              <%= link_to 'Sair', destroy_seller_session_path, method: :delete %>
-            </li>
+            <% if current_seller.admin? %>
+              <li><%= link_to 'Visualizar todos pedidos', orders_path %></li>
+              <li><%= link_to 'Criar novo vendedor',  new_seller_path %></li>
+            <%  else %>
+              <li><%= link_to 'Minhas vendas', orders_path %></li>
+            <%  end %>
+            <li><%= link_to 'Sair', destroy_seller_session_path, method: :delete %></li>
           </ul>
         </nav>
       </div>
@@ -24,16 +25,16 @@
   <% end %>
 
   <span class="ls-show-sidebar ls-ico-menu"></span>
-  <%= link_to(root_path, html_options = {class:"ls-go-next"} ) do %>
+  <%= link_to(root_path, html_options = {class:"ls-go-home"} ) do %>
     <span class="ls-text">Pagina inicial</span>
   <% end %>
 
 
-    <h1 class="ls-brand-name">
-      <a href="home" class="ls-ico-earth">
-        <small>Locaweb</small>
-        Vendas
-      </a>
-    </h1>
+  <h1 class="ls-brand-name">
+    <%= link_to(root_path, html_options = {class:"ls-ico-earth"} ) do %>
+      <small>Locaweb</small>
+      Vendas
+    <% end %>
+  </h1>
 
 </div>

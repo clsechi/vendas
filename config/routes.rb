@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :orders, only:[:index, :show, :new, :create]
 
-  resources :customers, only: [:new, :create, :show, :edit, :update] do
+  resources :customers, only: [:index, :new, :create, :show, :edit, :update] do
     collection do
       get 'search'
     end

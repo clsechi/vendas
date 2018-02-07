@@ -12,7 +12,7 @@ feature 'seller views your orders' do
 
     visit root_path
 
-    click_on 'Visualizar meus pedidos'
+    click_on 'Vendas'
 
     expect(page).to have_link(order.id)
     expect(page).not_to have_link(other_order.id)
@@ -30,7 +30,7 @@ feature 'seller views your orders' do
 
     visit root_path
 
-    click_on 'Visualizar meus pedidos'
+    click_on 'Vendas'
 
     expect(page).to have_link(order.id)
     expect(page).to have_link(other_order.id)

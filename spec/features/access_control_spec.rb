@@ -9,8 +9,8 @@ feature 'user can access your views' do
     fill_in 'Senha', with: seller.password
     click_on 'Entrar'
 
-    expect(page).to have_content("Olá, #{seller.email}")
-    expect(page).to have_link('Visualizar meus pedidos')
+    expect(page).to have_content("#{seller.name}")
+    expect(page).to have_link('Vendas')
     expect(page).not_to have_link('Entrar')
   end
 
@@ -22,8 +22,8 @@ feature 'user can access your views' do
     fill_in 'Senha', with: admin.password
     click_on 'Entrar'
 
-    expect(page).to have_content("Olá, #{admin.email}")
-    expect(page).to have_link('Visualizar todos pedidos')
+    expect(page).to have_content("#{admin.name}")
+    expect(page).to have_link('Vendas')
     expect(page).not_to have_link('Entrar')
   end
 end
