@@ -37,6 +37,20 @@ feature 'Admin create seller' do
     fill_in 'Nome', with: 'Vendedor Um'
     click_on 'Criar'
 
-    expect(page).to have_content('Usuário já cadastrado')
+    expect(page).to have_content('Falha ao cadastrar o Vendedor')
+  end
+
+  scenario 'Sellers name cant be blank' do
+    admin = create(:seller, admin: true)
+
+    login_as(admin)
+    visit root_path
+    click_on 'Criar novo vendedor'
+    fill_in 'Email', with: ''
+    fill_in 'Senha', with: ''
+    fill_in 'Nome', with: ''
+    click_on 'Criar'
+
+    expect(page).to have_content('Falha ao cadastrar o Vendedor')
   end
 end
