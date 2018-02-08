@@ -10,7 +10,10 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @categories = parse_categories
+    uri = URI('http://localhost:3001/api/categories')
+    categories_json = Net::HTTP.get(uri)
+    categories_hash = JSON.parse(categories_json)
+    @categories = categories_hash['categories'].map { |category| Category.new category }
   end
 
   def create
@@ -31,7 +34,11 @@ class OrdersController < ApplicationController
 
   #lista todos os produtos
   def list_products
-    @products = get_products
+    order = Order.find(params[:order_id])
+    uri = URI "http://localhost:3001/api/categories/#{order.category_id}/products"
+    products_json = Net::HTTP.get(uri)
+    products_hash = JSON.parse(products_json)
+    @products = products_hash['products'].map { |product| Product.new product }
   end
 
   # salva id do produto
@@ -48,7 +55,11 @@ class OrdersController < ApplicationController
   end
 
   def list_plans
-    @plans = get_plans
+    order = Order.find(params[:order_id])
+    uri = URI "http://localhost:3001/api/products/#{order.product_id}/product_plans"
+    plans_json = Net::HTTP.get(uri)
+    plans_hash = JSON.parse(plans_json)
+    @plans = plans_hash['plans'].map { |plan| Plan.new(plan) }
   end
 
   def set_plan
@@ -74,6 +85,7 @@ class OrdersController < ApplicationController
     price_id = params[:value]
     @order.periodicity_id = params[:periodicity_id]
     set_session('price_name', params[:price_name])
+
     if @order.update(value: price_id)
       redirect_to customer_order_check_path(@order.customer, @order)
     else
@@ -90,54 +102,13 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  private
 
+
+  private
 
   def set_session(session_name, session_value)
     session_name = session_name.to_sym
     session[session_name] = session_value
-  end
-
-  def parse_categories
-
-    # uri = URI('http://localhost:3001/api/categories')
-    # categories_json = Net::HTTP.get(uri)
-    categories_json = '{"categories":[{"id": 1,"name": "Hospedagem"}, {"id": 2,"name": "Cloud e Servidores"},{"id": 3,"name": "Loja Virtual"}]}'
-    categories_hash = JSON.parse(categories_json)
-
-    categories = []
-
-    categories_hash['categories'].each do |category|
-      categories << Category.new(category)
-    end
-    categories
-  end
-
-  def get_products
-    products_json = '{"products":[{"id": 1, "name": "Hospedagem de sites"}, {"id": 2, "name": "Registro de dominios"},
-     {"id": 3, "name": "SSL de Locaweb"}]}'
-    products_hash = JSON.parse(products_json)
-
-    products = []
-
-    products_hash['products'].each do |product|
-      products << Product.new(product)
-    end
-    products
-  end
-
-  def get_plans
-    plans_json = '[{"id": 1, "name": "Hospedagem I", "description": "some text"},
-                    {"id": 2, "name": "Hospedagem II", "description": "some text"},
-                    {"id": 3, "name": "Hospedagem III", "description": "some text"}]'
-
-    plans_hash = JSON.parse(plans_json)
-    plans = []
-
-    plans_hash.each do |plan|
-      plans << Plan.new(plan)
-    end
-    plans
   end
 
   def get_prices
@@ -163,12 +134,8 @@ class OrdersController < ApplicationController
 ]'
 
     prices_hash = JSON.parse(prices_json)
-    prices = []
 
-    prices_hash.each do |price|
-      prices << Price.new(price)
-    end
-    prices
+    prices_hash.map { |price| Price.new price }
   end
 
   def send_email(order_id)
