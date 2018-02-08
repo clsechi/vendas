@@ -10,7 +10,11 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @categories = parse_categories
+    uri = URI "#{Rails.configuration.sales['products_url']}/categories"
+
+    categories_json = Net::HTTP.get(uri)
+    categories_hash = JSON.parse(categories_json)
+    @categories = categories_hash['categories'].map { |category| Category.new category }
   end
 
   def create
@@ -21,7 +25,7 @@ class OrdersController < ApplicationController
 
     @order.seller_id = current_seller.id
     if @order.save
-      send_email(@order.id)
+      # send_email(@order.id)
       # send_order
       redirect_to customer_order_products_path(@order.customer, @order)
     else
@@ -29,9 +33,15 @@ class OrdersController < ApplicationController
     end
   end
 
-  #lista todos os produtos
+  # lista todos os produtos
   def list_products
-    @products = get_products
+    order = Order.find(params[:order_id])
+    uri = URI "#{Rails.configuration.sales['products_url']}/categories/#{order
+                      .category_id}/products"
+
+    products_json = Net::HTTP.get(uri)
+    products_hash = JSON.parse(products_json)
+    @products = products_hash['products'].map { |product| Product.new product }
   end
 
   # salva id do produto
@@ -48,7 +58,12 @@ class OrdersController < ApplicationController
   end
 
   def list_plans
-    @plans = get_plans
+    order = Order.find(params[:order_id])
+    uri = URI "#{Rails.configuration.sales['products_url']}/products/#{order
+                      .product_id}/product_plans"
+    plans_json = Net::HTTP.get(uri)
+    plans_hash = JSON.parse(plans_json)
+    @plans = plans_hash['plans'].map { |plan| Plan.new(plan) }
   end
 
   def set_plan
@@ -64,9 +79,14 @@ class OrdersController < ApplicationController
   end
 
   def list_prices
-    @order = Order.find(params[:order_id])
-    @customer = @order.customer
-    @prices = get_prices
+    order = Order.find(params[:order_id])
+    uri = URI "#{Rails.configuration
+                      .sales['products_url']}/product_plans/#{order
+                      .plan_id}/plan_prices"
+    prices_json = Net::HTTP.get(uri)
+    prices_hash = JSON.parse(prices_json)
+
+    @prices = prices_hash['prices'].map { |price| Price.new(price) }
   end
 
   def set_price
@@ -92,52 +112,9 @@ class OrdersController < ApplicationController
 
   private
 
-
   def set_session(session_name, session_value)
     session_name = session_name.to_sym
     session[session_name] = session_value
-  end
-
-  def parse_categories
-
-    # uri = URI('http://localhost:3001/api/categories')
-    # categories_json = Net::HTTP.get(uri)
-    categories_json = '{"categories":[{"id": 1,"name": "Hospedagem"}, {"id": 2,"name": "Cloud e Servidores"},{"id": 3,"name": "Loja Virtual"}]}'
-    categories_hash = JSON.parse(categories_json)
-
-    categories = []
-
-    categories_hash['categories'].each do |category|
-      categories << Category.new(category)
-    end
-    categories
-  end
-
-  def get_products
-    products_json = '{"products":[{"id": 1, "name": "Hospedagem de sites"}, {"id": 2, "name": "Registro de dominios"},
-     {"id": 3, "name": "SSL de Locaweb"}]}'
-    products_hash = JSON.parse(products_json)
-
-    products = []
-
-    products_hash['products'].each do |product|
-      products << Product.new(product)
-    end
-    products
-  end
-
-  def get_plans
-    plans_json = '[{"id": 1, "name": "Hospedagem I", "description": "some text"},
-                    {"id": 2, "name": "Hospedagem II", "description": "some text"},
-                    {"id": 3, "name": "Hospedagem III", "description": "some text"}]'
-
-    plans_hash = JSON.parse(plans_json)
-    plans = []
-
-    plans_hash.each do |plan|
-      plans << Plan.new(plan)
-    end
-    plans
   end
 
   def get_prices
@@ -161,14 +138,6 @@ class OrdersController < ApplicationController
          }
    }
 ]'
-
-    prices_hash = JSON.parse(prices_json)
-    prices = []
-
-    prices_hash.each do |price|
-      prices << Price.new(price)
-    end
-    prices
   end
 
   def send_email(order_id)
