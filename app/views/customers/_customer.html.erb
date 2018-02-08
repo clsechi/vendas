@@ -3,19 +3,35 @@
     <tr>
       <th>Nome do Cliente</th>
       <th>CPF/CNPJ</th>
-      <th colspan="2">Telefone</th>
+      <th>Telefone</th>
+      <th colspan="2">Pessoa</th>
     <tr>
   </thead>
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
         <td><%= link_to customer.name, customer_path(customer) %></td>
-        <td><%= customer.cpf %></td>
-        <td><%= customer.phone %></td>
+
+        <% if customer.cpf == "" %>
+          <td><%= customer.cnpj %></td>
+        <% else %>
+          <td><%= customer.cpf %></td>
+        <% end %>
+
+        <% if customer.phone == "" %>
+          <td><%= customer.contact %></td>
+        <% else %>
+          <td><%= customer.phone %></td>
+        <% end %>
+
+        <% if customer.legal_person? %>
+          <td> Pessoa Física </td>
+        <% else %>
+          <td> Pessoa Juridica </td>
+        <% end %>
     </tr>
     <% end %>
   </tbody>
 </table>
-
 <p><%= link_to 'Novo Cliente', new_customer_path, class:'ls-btn-primary' %></p>
 <p><%= link_to 'Voltar', root_path , class:'ls-btn'%></p>

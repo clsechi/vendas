@@ -7,33 +7,16 @@
         <a href="#" class="ls-ico-user">
           <img src="/locawebstyle/assets/images/locastyle/avatar-example.jpg" alt="" />
           <span class="ls-name"> <%= current_seller.name %></span>
+          <span><%= link_to 'Sair', destroy_seller_session_path, method: :delete %></span>
         </a>
-
-        <nav class="ls-dropdown-nav ls-user-menu">
-          <ul>
-            <% if current_seller.admin? %>
-              <li><%= link_to 'Visualizar todos pedidos', orders_path %></li>
-              <li><%= link_to 'Criar novo vendedor',  new_seller_path %></li>
-            <%  else %>
-              <li><%= link_to 'Minhas vendas', orders_path %></li>
-            <%  end %>
-            <li><%= link_to 'Sair', destroy_seller_session_path, method: :delete %></li>
-          </ul>
-        </nav>
       </div>
     </div>
   <% end %>
 
-  <span class="ls-show-sidebar ls-ico-menu"></span>
-  <%= link_to(root_path, html_options = {class:"ls-go-home"} ) do %>
-    <span class="ls-text">Pagina inicial</span>
-  <% end %>
-
-
   <h1 class="ls-brand-name">
     <%= link_to(root_path, html_options = {class:"ls-ico-earth"} ) do %>
       <small>Locaweb</small>
-      Vendas
+      <label>Vendas</label>
     <% end %>
   </h1>
 

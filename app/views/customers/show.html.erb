@@ -1,11 +1,16 @@
-<p>  <%= @customer.name %> <p>
-<p>  <%= @customer.address %> <p>
-<p>  <%= @customer.cpf %> <p>
-<p>  <%= @customer.email %> <p>
-<p>  <%= @customer.phone %> <p>
-<p>  <%= @customer.birth_date %> <p>
-<p>  <%= @customer.cnpj %> <p>
-<p>  <%= @customer.contact %> <p>
-<p>  <%= @customer.company_name %> <p>
+<%= render 'headbar' %>
+<p><b>Nome:</b> <%= @customer.name %> <p>
+<p><b>Endereço:</b> <%= @customer.address %> <p>
+  <% if @customer.cpf == "" %>
+    <p><b>Nome da Companhia:</b> <%= @customer.company_name %> <p>
+    <p><b>CNPJ:</b> <%= @customer.cnpj %></p>
+  <% else %>
+    <p><b>CPF:</b> <%= @customer.cpf %></p>
+  <% end %>
+<p><b>Email:</b> <%= @customer.email %> <p>
+<p><b>Telefone:</b> <%= @customer.phone%><%= @customer.contact %><p>
+<p><b>Data de nascimento:</b> <%= l @customer.birth_date %> <p>
 
-<%= link_to 'Editar', edit_customer_path %>
+<%= link_to 'Editar', edit_customer_path , class:'ls-btn-primary'%>
+<%= link_to 'Voltar', root_path , class:'ls-btn'%>
+<%= link_to 'Nova Venda', root_path, class:'ls-btn-primary'%>
