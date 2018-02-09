@@ -16,13 +16,13 @@ Rails.application.routes.draw do
     resources :orders, only:[:show, :new, :create, :destroy] do
 
       get 'products', to: 'orders#list_products', as: 'products'
-      post 'products', to: 'orders#set_product', as: 'product'
+      post 'products', to: 'orders#update_product', as: 'product'
 
       get 'plans', to: 'orders#list_plans', as: 'plans'
-      post 'plans', to: 'orders#set_plan', as: 'plan'
+      post 'plans', to: 'orders#update_plan', as: 'plan'
 
       get 'prices', to: 'orders#list_prices', as: 'prices'
-      post 'prices', to: 'orders#set_price', as: 'price'
+      post 'prices', to: 'orders#update_price', as: 'price'
 
       get 'check', to: 'orders#check', as: 'check'
       post 'confirm', to: 'orders#confirm', as: 'confirm'
