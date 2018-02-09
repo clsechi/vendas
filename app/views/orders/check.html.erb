@@ -1,4 +1,4 @@
-<%= render 'headbar' %> 
+<%= render 'headbar' %>
 <div class='ls-box'>
 <h5 class="ls-title-3">Pedido</h5>
 <br>
@@ -7,4 +7,10 @@
 <p><b>Plano: </b><%= session[:plan_name] %></p>
 <p><b>Periodicidade: </b><%= session[:price_name] %></p>
 </div>
-<%= button_to 'Confirmar', customer_order_confirm_path(@order), class:'ls-btn-primary'%>
+<div>
+<p><%= button_to 'Confirmar', customer_order_confirm_path(@order), class:'ls-btn-primary'%></p>
+<p><%= link_to 'Cancelar venda',[@customer, @order],
+        method: :delete,
+        data: { confirm: 'Tem certeza que deseja cancelar?'},
+        class:'ls-btn-primary-danger' %> </p>
+<div>
