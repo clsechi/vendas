@@ -1,9 +1,12 @@
 production:
-  host: http://paineldocliente.locaweb.com
+  client_panel_url: http://paineldocliente.locaweb.com
+  products_url: http://localhost:3001/api
   send_order: /api/order
 development:
-  host: http://localhost:5000
+  client_panel_url: http://paineldocliente.locaweb.com
+  products_url: http://localhost:3001/api
   send_order: /api/order
 test:
-  host: http://paineldocliente.fake.com.br
+  client_panel_url: http://paineldocliente.fake.com.br
+  products_url: http://localhost:3001/api
   send_order: /api/order

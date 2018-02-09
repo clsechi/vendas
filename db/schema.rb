@@ -35,7 +35,8 @@ ActiveRecord::Schema.define(version: 20180205153549) do
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.integer "plan_id"
-    t.float "price"
+    t.integer "periodicity_id"
+    t.decimal "value"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["seller_id"], name: "index_orders_on_seller_id"
   end

@@ -11,7 +11,7 @@ feature 'user views orders list' do
 
     visit root_path
 
-    click_on 'Visualizar todos pedidos'
+    click_on 'Vendas'
 
     expect(page).to have_link(order.id)
   end
@@ -26,7 +26,7 @@ feature 'user views orders list' do
 
     visit root_path
 
-    click_on 'Visualizar todos pedidos'
+    click_on 'Vendas'
 
     expect(page).to have_link(order.id)
   end
@@ -53,7 +53,7 @@ feature 'user views orders list' do
 
     visit root_path
 
-    click_on 'Visualizar todos pedidos'
+    click_on 'Vendas'
 
     expect(page).to have_link(order.id)
     expect(page).to have_content(order.seller.name)

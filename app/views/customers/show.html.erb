@@ -6,10 +6,10 @@
     <p><b>CNPJ:</b> <%= @customer.cnpj %></p>
   <% else %>
     <p><b>CPF:</b> <%= @customer.cpf %></p>
+    <p><b>Data de nascimento:</b> <%= l @customer.birth_date %> <p>
   <% end %>
 <p><b>Email:</b> <%= @customer.email %> <p>
 <p><b>Telefone:</b> <%= @customer.phone%><%= @customer.contact %><p>
-<p><b>Data de nascimento:</b> <%= l @customer.birth_date %> <p>
 
 <%= link_to 'Editar', edit_customer_path , class:'ls-btn-primary'%>
 <%= link_to 'Voltar', root_path , class:'ls-btn'%>
