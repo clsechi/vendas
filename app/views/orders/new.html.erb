@@ -1,11 +1,17 @@
 <%= render 'headbar' %>
 <h1>Novo pedido</h1>
-
-<% @categories.each do |cat| %>
-
-  <%= link_to cat.name, customer_orders_path(category_id: cat.id, 
-    category_name: cat.name ), method: :post %>
-
-<% end %>
-
+<br>
+<h3>Selecione a categoria do produto</h3>
+<br>
+  <% @categories.each do |cat| %>
+    <div class="ls-list">
+      <header class="ls-list-header">
+        <div class="ls-list-title col-md-9">
+        <%= link_to cat.name, customer_orders_path(category_id: cat.id,
+          category_name: cat.name ), method: :post%>
+        <small><%= cat.description %></small>
+        </div>
+      </header>
+    </div>
+  <% end %>
 <p><%= link_to 'Voltar', root_path , class:'ls-btn'%></p>

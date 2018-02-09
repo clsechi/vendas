@@ -70,7 +70,7 @@ feature 'seller create order' do
     click_on 'Hospedagem I'
     click_on 'Anual - R$ 19.9'
 
-    expect(page).to have_css('h1', text: 'Pedido')
+    expect(page).to have_css('h5', text: 'Pedido')
     expect(page).to have_content('Categoria: Hospedagem')
     expect(page).to have_content('Produto: Hospedagem')
     expect(page).to have_content('Plano: Hospedagem I')

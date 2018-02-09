@@ -12,13 +12,13 @@
       <tr>
         <td><%= link_to customer.name, customer_path(customer) %></td>
 
-        <% if customer.cpf == "" %>
+        <% if customer.cpf == "" || customer.cpf.nil? %>
           <td><%= customer.cnpj %></td>
         <% else %>
           <td><%= customer.cpf %></td>
         <% end %>
 
-        <% if customer.phone == "" %>
+        <% if customer.phone == "" || customer.phone.nil? %>
           <td><%= customer.contact %></td>
         <% else %>
           <td><%= customer.phone %></td>
@@ -33,5 +33,5 @@
     <% end %>
   </tbody>
 </table>
-<p><%= link_to 'Novo Cliente', new_customer_path, class:'ls-btn-primary' %></p>
-<p><%= link_to 'Voltar', root_path , class:'ls-btn'%></p>
+<p><%= link_to 'Novo Cliente', new_customer_path, class:'ls-btn-primary' %>
+<%= link_to 'Voltar', root_path , class:'ls-btn'%></p>

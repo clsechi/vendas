@@ -1,5 +1,10 @@
-<h1>Pedido realizado</h1>
-<p>Categoria: <%= session[:category_name] %></p>
-<p>Produto: <%= session[:product_name] %></p>
-<p>Plano: <%= session[:plan_name] %></p>
-<p>Periodicidade: <%= session[:price_name] %></p>
+<%= render 'headbar' %>
+<div class='ls-box'>
+<h5 class="ls-title-3">Pedido Realizado</h5>
+<br>
+<p><b>Categoria: </b><%= session[:category_name] %></p>
+<p><b>Produto: </b><%= session[:product_name] %></p>
+<p><b>Plano: </b><%= session[:plan_name] %></p>
+<p><b>Periodicidade: </b><%= session[:price_name] %></p>
+</div>
+<p><%= link_to 'Nova Venda', root_path , class:'ls-btn'%></p>
