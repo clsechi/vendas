@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html class="ls-theme-green">
+
+<% if seller_signed_in? && current_seller.admin?%>
+<html class="ls-theme-green" >
+<% else %>
+<html class="ls-theme-blue" >
+<% end %>
+
   <head>
     <title>Vendas Locaweb</title>
     <%= stylesheet_link_tag   "//assets.locaweb.com.br/locastyle/3.8.2/stylesheets/locastyle.css",  "application" %>
@@ -21,7 +27,6 @@
 
     <!-- <%= render "layouts/shared/sidebar_notifications" %> -->
     <!-- We recommended use jQuery 1.10 or up -->
-
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <%= javascript_include_tag "application", "//assets.locaweb.com.br/locastyle/3.8.2/javascripts/locastyle.js" %>
