@@ -1,9 +1,9 @@
-<%= render 'headbar' %> 
+<%= render 'headbar' %>
 <div class='ls-box'>
 <h3 class="ls-title-3"><%= @customer.name %></h3>
 <br>
 <p><b>Endereço:</b> <%= @customer.address %> <p>
-  <% if @customer.cpf == "" || @customer.cpf.nil?%>
+  <% if @customer.cpf.blank?%>
     <p><b>Nome da Companhia:</b> <%= @customer.company_name %> <p>
     <p><b>CNPJ:</b> <%= @customer.cnpj %></p>
   <% else %>

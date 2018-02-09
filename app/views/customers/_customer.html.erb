@@ -12,13 +12,13 @@
       <tr>
         <td><%= link_to customer.name, customer_path(customer) %></td>
 
-        <% if customer.cpf == "" || customer.cpf.nil? %>
+        <% if customer.cpf.blank? %>
           <td><%= customer.cnpj %></td>
         <% else %>
           <td><%= customer.cpf %></td>
         <% end %>
 
-        <% if customer.phone == "" || customer.phone.nil? %>
+        <% if customer.phone.blank? %>
           <td><%= customer.contact %></td>
         <% else %>
           <td><%= customer.phone %></td>
