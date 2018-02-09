@@ -155,7 +155,8 @@ feature 'seller create customer' do
     click_on 'Enviar'
     click_on 'Clientes'
 
-    expect(page).to have_content('Maria')
-    expect(page).to have_content('João')
+    expect(page).to have_link('Maria')
+    expect(page).to have_link('João')
+    expect(current_path).to eq customers_path
   end
 end
