@@ -10,7 +10,7 @@ feature 'Admin create seller' do
     fill_in 'Email', with: 'vendedor@teste.com'
     fill_in 'Senha', with: '12345678'
     fill_in 'Nome', with: 'Vendedor Um'
-    click_on 'Criar'
+    click_on 'Enviar'
 
     expect(page).to have_content('Vendedor Um')
     expect(page).to have_content('vendedor@teste.com')
@@ -35,7 +35,7 @@ feature 'Admin create seller' do
     fill_in 'Email', with: 'vendedor@teste.com'
     fill_in 'Senha', with: '12345678'
     fill_in 'Nome', with: 'Vendedor Um'
-    click_on 'Criar'
+    click_on 'Enviar'
 
     expect(page).to have_content('Falha ao cadastrar o Vendedor')
   end
@@ -49,7 +49,7 @@ feature 'Admin create seller' do
     fill_in 'Email', with: ''
     fill_in 'Senha', with: ''
     fill_in 'Nome', with: ''
-    click_on 'Criar'
+    click_on 'Enviar'
 
     expect(page).to have_content('Falha ao cadastrar o Vendedor')
   end

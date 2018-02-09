@@ -1,40 +1,42 @@
 <% if @customer.errors.any? %>
+<p class="ls-alert-info"><%= flash[:fail] %></p>
   <% @customer.errors.full_messages.each do |msg| %>
     <p class="ls-alert-danger"><%= msg %></p>
   <% end %>
 <% end %>
 
-    <div class="ls-label col-md-3">
-      <%= form_for @customer, class:'ls-form row' do |f| %>
-        <b><%= f.label :name, class:"ls-label-text" %></b>
-        <%= f.text_field :name %>
+  <div class="ls-label col-md-3">
+    <%= form_for @customer, class:'ls-form row' do |f| %>
+      <b><%= f.label :name, class:"ls-label-text" %></b>
+      <%= f.text_field :name %>
 
-        <b><%= f.label :address, class:"ls-label-text" %></b>
-        <%= f.text_field :address %>
+      <b><%= f.label :address, class:"ls-label-text" %></b>
+      <%= f.text_field :address %>
 
-        <b><%= f.label :cpf, class:"ls-label-text" %></b>
-        <%= f.text_field :cpf %>
+      <b><%= f.label :cpf, class:"ls-label-text" %></b>
+      <%= f.text_field :cpf %>
 
-        <b><%= f.label :email, class:"ls-label-text" %></b>
-        <%= f.text_field :email %>
+      <b><%= f.label :email, class:"ls-label-text" %></b>
+      <%= f.text_field :email %>
 
-        <b><%= f.label :phone, class:"ls-label-text" %></b>
-        <%= f.text_field :phone %>
+      <b><%= f.label :phone, class:"ls-label-text" %></b>
+      <%= f.text_field :phone %>
 
-        <b><%= f.label :birth_date, class:"ls-label-text" %></b>
-        <%= f.date_field :birth_date %>
+      <b><%= f.label :birth_date, class:"ls-label-text" %></b>
+      <%= f.date_field :birth_date %>
 
-        <b><%= f.label :cnpj, class:"ls-label-text" %></b>
-        <%= f.text_field :cnpj %>
+      <b><%= f.label :cnpj, class:"ls-label-text" %></b>
+      <%= f.text_field :cnpj %>
 
-        <b><%= f.label :company_name, class:"ls-label-text" %></b>
-        <%= f.text_field :company_name %>
+      <b><%= f.label :company_name, class:"ls-label-text" %></b>
+      <%= f.text_field :company_name %>
 
-        <b><%= f.label :contact, class:"ls-label-text" %></b>
-        <%= f.text_field :contact %>
+      <b><%= f.label :contact, class:"ls-label-text" %></b>
+      <%= f.text_field :contact %>
 
-        <div class="ls-actions-btn">
-          <%= f.submit 'Enviar', class:'ls-btn-primary' %>
-        </div>
-      <% end %>
-    </div>
+      <div class="ls-actions-btn">
+        <%= f.submit 'Enviar', class:'ls-btn-primary' %>
+        <%= link_to 'Voltar', root_path , class:'ls-btn'%>
+      </div>
+    <% end %>
+  </div>

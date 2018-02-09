@@ -1,14 +1,24 @@
+<%= render 'shared/headbar' %>
 <h1>Novo pedido</h1>
-<h2>Selecione o produto</h2>
-<p>Categoria: <%= session[:category_name] %></p>
-
+<br>
+<h3>Selecione o produto</h3>
+<br>
+<ol class="ls-breadcrumb">
+  <li>Categoria: <%= session[:category_name] %></a></li>
+</ol>
+<br>
 <% @products.each do |prod| %>
-
-  <%= link_to prod.name,
-      customer_order_product_path(id: prod.id,
-                                  product_id: prod.id,
-                                  product_name: prod.name), method: :patch %>
-
+  <div class="ls-list">
+    <header class="ls-list-header">
+      <div class="ls-list-title col-md-9">
+        <%= link_to prod.name,
+            customer_order_product_path(id: prod.id,
+                                        product_id: prod.id,
+                                        product_name: prod.name), method: :patch %>
+        <small><%= prod.description %> </small>
+      </div>
+    </header>
+  </div>
 <% end %>
 
 <p> <%= link_to 'Cancelar venda',[@customer, @order],

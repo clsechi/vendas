@@ -1,12 +1,16 @@
-<h1> Pedido </h1>
-<p>Categoria: <%= session[:category_name] %></p>
-<p>Produto: <%= session[:product_name] %></p>
-<p>Plano: <%= session[:plan_name] %></p>
-<p>Periodicidade: <%= session[:price_name] %></p>
-
-<%= button_to 'Confirmar', customer_order_confirm_path(@order) %>
-
-<p> <%= link_to 'Cancelar venda',[@customer, @order],
+<%= render 'headbar' %>
+<div class='ls-box'>
+<h5 class="ls-title-3">Pedido</h5>
+<br>
+<p><b>Categoria: </b><%= session[:category_name] %></p>
+<p><b>Produto: </b><%= session[:product_name] %></p>
+<p><b>Plano: </b><%= session[:plan_name] %></p>
+<p><b>Periodicidade: </b><%= session[:price_name] %></p>
+</div>
+<div>
+<p><%= button_to 'Confirmar', customer_order_confirm_path(@order), class:'ls-btn-primary'%></p>
+<p><%= link_to 'Cancelar venda',[@customer, @order],
         method: :delete,
         data: { confirm: 'Tem certeza que deseja cancelar?'},
         class:'ls-btn-primary-danger' %> </p>
+<div>

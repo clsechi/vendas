@@ -1,16 +1,27 @@
+<%= render 'shared/headbar' %>
 <h1>Novo pedido</h1>
-<h2>Selecione a periodicidade</h2>
-<p>Categoria: <%= session[:category_name] %></p>
-<p>Produto: <%= session[:product_name] %></p>
-<p>Plano: <%= session[:plan_name] %></p>
-
+<br>
+<h3>Selecione a periodicidade</h3>
+<br>
+<ol class="ls-breadcrumb">
+  <li>Categoria: <%= session[:category_name] %></li>
+  <li>Produto: <%= session[:product_name] %></li>
+  <li>Plano: <%= session[:plan_name] %></li>
+</ol>
+<br>
 <% @prices.each do |price| %>
- <%= link_to price.name,
-      customer_order_price_path([@customer, @order],
-                                id:price.per.period,
-                                value: price.value,
-                                periodicity_id: price.per.period,
-                                price_name: price.name), method: :patch  %>
+  <div class="ls-list">
+    <header class="ls-list-header">
+      <div class="ls-list-title col-md-9">
+        <%= link_to price.name,
+             customer_order_price_path([@customer, @order],
+                                       id:price.per.period,
+                                       value: price.value,
+                                       periodicity_id: price.per.period,
+                                       price_name: price.name), method: :patch  %>
+      </div>
+    </header>
+  </div>
 <% end %>
 
 <p> <%= link_to 'Cancelar venda',[@customer, @order],
