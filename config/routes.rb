@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
-    resources :orders, only:[:show, :new, :create] do
+    resources :orders, only:[:show, :new, :create, :destroy] do
 
       get 'products', to: 'orders#list_products', as: 'products'
       post 'products', to: 'orders#set_product', as: 'product'

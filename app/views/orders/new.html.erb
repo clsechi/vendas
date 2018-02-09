@@ -3,9 +3,9 @@
 
 <% @categories.each do |cat| %>
 
-  <%= link_to cat.name, customer_orders_path(category_id: cat.id, 
+  <%= link_to cat.name, customer_orders_path(category_id: cat.id,
     category_name: cat.name ), method: :post %>
 
 <% end %>
 
-<p><%= link_to 'Voltar', root_path , class:'ls-btn'%></p>
+<p><%= link_to 'Voltar', root_path, class:'ls-btn'%></p>

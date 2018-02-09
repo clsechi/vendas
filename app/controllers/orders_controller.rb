@@ -3,6 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:list_products, :set_product, :list_plans,
                                    :set_plan, :list_prices, :set_price, :check,
                                    :show]
+  before_action :set_customer, only: [:destroy, :list_products, :list_plans,
+                                      :list_prices, :check]
 
   def index
     @orders = if current_seller.admin?
@@ -26,12 +28,18 @@ class OrdersController < ApplicationController
                        category_id: params[:category_id],
                        seller_id: current_seller.id)
     if @order.save
-      # send_email(@order.id)
-      # send_order
       redirect_to customer_order_products_path(@order.customer, @order)
     else
       render :new
     end
+  end
+
+  def destroy
+    @order = @customer.orders.find(params[:id])
+    @order.destroy
+
+    flash[:notice] = 'Venda cancelada!'
+    redirect_to root_path
   end
 
   def list_products
@@ -117,5 +125,9 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = Order.find(params[:order_id])
+  end
+
+  def set_customer
+    @customer = Customer.find(params[:customer_id])
   end
 end

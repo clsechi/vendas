@@ -8,3 +8,8 @@
  <%= link_to price.name, customer_order_price_path([@customer, @order], value: price.value,
    periodicity_id: price.per.period, price_name: price.name), method: :post  %>
 <% end %>
+
+<p> <%= link_to 'Cancelar venda',[@customer, @order],
+        method: :delete,
+        data: { confirm: 'Tem certeza que deseja cancelar?'},
+        class:'ls-btn-primary-danger' %> </p>

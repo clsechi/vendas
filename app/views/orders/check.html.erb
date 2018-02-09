@@ -5,3 +5,8 @@
 <p>Periodicidade: <%= session[:price_name] %></p>
 
 <%= button_to 'Confirmar', customer_order_confirm_path(@order) %>
+
+<p> <%= link_to 'Cancelar venda',[@customer, @order],
+        method: :delete,
+        data: { confirm: 'Tem certeza que deseja cancelar?'},
+        class:'ls-btn-primary-danger' %> </p>
