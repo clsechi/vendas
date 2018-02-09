@@ -11,7 +11,11 @@
   <div class="ls-list">
     <header class="ls-list-header">
       <div class="ls-list-title col-md-9">
-        <%= link_to prod.name, customer_order_product_path(product_id: prod.id, product_name: prod.name), method: :post %>
+        <%= link_to prod.name,
+                    customer_order_product_path(product_id: prod.id,
+                                                product_name: prod.name),
+                                                method: :post %>
+        <small><%= prod.description %> </small>
       </div>
     </header>
   </div>

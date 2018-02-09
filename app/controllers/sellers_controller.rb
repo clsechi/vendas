@@ -9,8 +9,8 @@ class SellersController < ApplicationController
       flash[:notice] = 'Vendedor criado com sucesso'
       redirect_to @seller
     else
-      flash[:alert] = 'Falha ao cadastrar o Vendedor'
-      redirect_to root_path
+      flash.now[:fail] = 'Falha ao cadastrar o Vendedor'
+      render :new
     end
   end
 

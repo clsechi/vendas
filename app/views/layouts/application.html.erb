@@ -12,6 +12,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
+        <%= render "layouts/shared/headbar" %>
         <p class="ls-alert-info"><%= notice %></p>
         <p class="ls-alert-warning"><%= alert %></p>
         <%= yield %>
@@ -20,6 +21,8 @@
 
     <!-- <%= render "layouts/shared/sidebar_notifications" %> -->
     <!-- We recommended use jQuery 1.10 or up -->
+
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <%= javascript_include_tag "application", "//assets.locaweb.com.br/locastyle/3.8.2/javascripts/locastyle.js" %>
   </body>

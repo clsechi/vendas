@@ -1,4 +1,5 @@
 <% if @customer.errors.any? %>
+<p class="ls-alert-info"><%= flash[:fail] %></p>
   <% @customer.errors.full_messages.each do |msg| %>
     <p class="ls-alert-danger"><%= msg %></p>
   <% end %>
