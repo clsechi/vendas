@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
-  before_action :find_order, only: [:check, :show]
+  before_action :find_order, only: [:check]
   before_action :find_customer, only: [:destroy, :check]
 
   def index
@@ -32,7 +32,9 @@ class OrdersController < ApplicationController
 
   def check; end
 
-  def show; end
+  def show
+    @order = Order.find(params[:id])
+  end
 
   private
 
