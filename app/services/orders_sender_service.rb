@@ -1,7 +1,7 @@
 module OrdersSenderService
   class OrdersService
     include HTTParty
-    base_uri Rails.configuration.sales['host']
+    base_uri Rails.configuration.sales['client_panel_url']
 
     def self.send_post(order)
       options = { 'body':

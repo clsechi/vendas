@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OrdersSenderService do
+  WebMock.allow_net_connect!
   describe 'api send order JSON' do
     it 'send JSON' do
       seller = create(:seller)
@@ -9,7 +10,7 @@ RSpec.describe OrdersSenderService do
 
       login_as seller
       body = { 'order': order.to_json, 'customer': order.customer.to_json }
-      url = "#{Rails.configuration.sales['host']}"\
+      url = "#{Rails.configuration.sales['client_panel_url']}"\
             "#{Rails.configuration.sales['send_order']}"
 
       stub_request(:post, url)
@@ -30,7 +31,7 @@ RSpec.describe OrdersSenderService do
 
       login_as seller
       body = { 'order': order.to_json, 'customer': order.customer.to_json }
-      url = "#{Rails.configuration.sales['host']}"\
+      url = "#{Rails.configuration.sales['client_panel_url']}"\
             "#{Rails.configuration.sales['send_order']}"
 
       stub_request(:post, url)

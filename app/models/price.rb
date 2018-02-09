@@ -1,10 +1,9 @@
 class Price
-
   attr_accessor :value, :periodicity
 
   def initialize(params)
-    @value = params["value"]
-    @periodicity = params["periodicity"]
+    @value = params['value']
+    @periodicity = params['periodicity']
   end
 
   def per

@@ -25,3 +25,5 @@ Style/SymbolArray:
   EnforcedStyle: brackets
 Rails/HasManyOrHasOneDependent:
   Enabled: false
+Metrics/AbcSize:
+  Enabled: false
