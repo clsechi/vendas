@@ -128,8 +128,34 @@ feature 'seller create customer' do
 
     expect(page).to have_content('CNPJ já está em uso')
   end
-  # cpf valido
-  # cnpj valido
-  # campos diferentes para pessoa fisica e juridica
-  # extras : validacao de data de nascimento e Telefone
+  scenario 'and permit create two customer as same type (PJ)' do
+    seller = create(:seller)
+
+    login_as(seller)
+    visit root_path
+    click_on 'Pesquisar cliente'
+    click_on 'Novo Cliente'
+
+    fill_in 'Nome', with: 'Maria'
+    fill_in 'Endereco', with: 'rua das flores'
+    fill_in 'CNPJ', with: '89.495.945/0001-35'
+    fill_in 'Email', with: 'email@email.com'
+    fill_in 'Nome da Companhia', with: 'floricultura da Maria'
+    fill_in 'Contato', with: '1199999999'
+    click_on 'Enviar'
+    click_on 'Voltar'
+    click_on 'Pesquisar cliente'
+    click_on 'Novo Cliente'
+    fill_in 'Nome', with: 'João'
+    fill_in 'Endereco', with: 'rua 13 de maio'
+    fill_in 'CNPJ', with: '63.755.929/0001-25'
+    fill_in 'Email', with: 'email_user@email.com'
+    fill_in 'Nome da Companhia', with: 'floricultura da Maria'
+    fill_in 'Contato', with: '11999889'
+    click_on 'Enviar'
+    click_on 'Clientes'
+
+    expect(page).to have_content('Maria')
+    expect(page).to have_content('João')
+  end
 end
