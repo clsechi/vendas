@@ -14,15 +14,9 @@ Rails.application.routes.draw do
       get 'search'
     end
     resources :orders, only:[:show, :new, :create] do
-
-      get 'products', to: 'orders#list_products', as: 'products'
-      post 'products', to: 'orders#set_product', as: 'product'
-
-      get 'plans', to: 'orders#list_plans', as: 'plans'
-      post 'plans', to: 'orders#set_plan', as: 'plan'
-
-      get 'prices', to: 'orders#list_prices', as: 'prices'
-      post 'prices', to: 'orders#set_price', as: 'price'
+      resources :products, only:[:index, :update]
+      resources :plans, only:[:index, :update]
+      resources :prices, only:[:index, :update]
 
       get 'check', to: 'orders#check', as: 'check'
       post 'confirm', to: 'orders#confirm', as: 'confirm'

@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
   before_action :set_order, only: [:list_products, :set_product, :list_plans,
-                                   :set_plan, :list_prices, :set_price, :check,
-                                   :show]
+                                   :set_plan, :list_prices, :set_price, :check]
+  before_action :list_categories, only: [:new, :show]
 
   def index
     @orders = if current_seller.admin?
@@ -12,12 +12,14 @@ class OrdersController < ApplicationController
               end
   end
 
+  def show
+    retrieve_category
+    retrieve_product
+    retrieve_plan
+  end
+
   def new
-    uri = URI "#{Rails.configuration.sales['products_url']}/categories"
-    categories_json = Net::HTTP.get(uri)
-    categories_hash = JSON.parse(categories_json)
-    @categories = categories_hash['categories']
-                  .map { |category| Category.new category }
+
   end
 
   def create
@@ -26,8 +28,6 @@ class OrdersController < ApplicationController
                        category_id: params[:category_id],
                        seller_id: current_seller.id)
     if @order.save
-      # send_email(@order.id)
-      # send_order
       redirect_to customer_order_products_path(@order.customer, @order)
     else
       render :new
@@ -89,13 +89,19 @@ class OrdersController < ApplicationController
 
   def check; end
 
-  def show; end
-
   private
 
   def set_session(session_name, session_value)
     session_name = session_name.to_sym
     session[session_name] = session_value
+  end
+
+  def list_categories
+    uri = URI "#{Rails.configuration.sales['products_url']}/categories"
+    categories_json = Net::HTTP.get(uri)
+    categories_hash = JSON.parse(categories_json)
+    @categories = categories_hash['categories']
+                  .map { |category| Category.new category }
   end
 
   def send_order
@@ -118,4 +124,28 @@ class OrdersController < ApplicationController
   def set_order
     @order = Order.find(params[:order_id])
   end
+
+
+
+  def retrieve_category
+    @order = Order.find(params[:customer_id])
+    uri = URI "#{Rails.configuration.sales['products_url']}/categories/#{@order.category_id}"
+    category_json = Net::HTTP.get(uri)
+    @category = JSON.parse(category_json, object_class: OpenStruct)
+  end
+
+  def retrieve_product
+    @order = Order.find(params[:customer_id])
+    uri = URI "#{Rails.configuration.sales['products_url']}/products/#{@order.product_id}"
+    product_json = Net::HTTP.get(uri)
+    @product = JSON.parse(product_json, object_class: OpenStruct)
+  end
+
+  def retrieve_plan
+    @order = Order.find(params[:customer_id])
+    uri = URI "#{Rails.configuration.sales['products_url']}/product_plans/#{@order.product_id}"
+    plan_json = Net::HTTP.get(uri)
+    @plan = JSON.parse(plan_json, object_class: OpenStruct)
+  end
+
 end
