@@ -4,7 +4,10 @@
 
 <% @products.each do |prod| %>
 
-  <%= link_to prod.name, customer_order_product_path(product_id: prod.id, product_name: prod.name), method: :post %>
+  <%= link_to prod.name,
+      customer_order_product_path(id: prod.id,
+                                  product_id: prod.id,
+                                  product_name: prod.name), method: :patch %>
 
 <% end %>
 

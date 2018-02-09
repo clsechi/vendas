@@ -5,8 +5,12 @@
 <p>Plano: <%= session[:plan_name] %></p>
 
 <% @prices.each do |price| %>
- <%= link_to price.name, customer_order_price_path([@customer, @order], value: price.value,
-   periodicity_id: price.per.period, price_name: price.name), method: :post  %>
+ <%= link_to price.name,
+      customer_order_price_path([@customer, @order],
+                                id:price.per.period,
+                                value: price.value,
+                                periodicity_id: price.per.period,
+                                price_name: price.name), method: :patch  %>
 <% end %>
 
 <p> <%= link_to 'Cancelar venda',[@customer, @order],

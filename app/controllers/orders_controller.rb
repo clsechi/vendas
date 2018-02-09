@@ -1,11 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
-  before_action :find_order, only: [:list_products, :update_product,
-                                    :list_plans,
-                                    :update_plan, :list_prices, :update_price,
-                                    :check, :show]
-  before_action :find_customer, only: [:destroy, :list_products, :list_plans,
-                                       :list_prices, :check]
+  before_action :find_order, only: [:check, :show]
+  before_action :find_customer, only: [:destroy, :check]
 
   def index
     @orders = list_orders
@@ -32,46 +28,6 @@ class OrdersController < ApplicationController
     @order.destroy
     flash[:notice] = 'Venda cancelada!'
     redirect_to root_path
-  end
-
-  def list_products
-    @products = Product.all @order
-  end
-
-  def update_product
-    set_session('product_name', params[:product_name])
-    if @order.update(product_id: params[:product_id])
-      redirect_to customer_order_plans_path(@order.customer, @order)
-    else
-      render :products
-    end
-  end
-
-  def list_plans
-    @plans = Plan.all @order
-  end
-
-  def update_plan
-    set_session('plan_name', params[:plan_name])
-    if @order.update(plan_id: params[:plan_id])
-      redirect_to customer_order_prices_path(@order.customer, @order)
-    else
-      render :plans
-    end
-  end
-
-  def list_prices
-    @prices = Price.all @order
-  end
-
-  def update_price
-    set_session('price_name', params[:price_name])
-    if @order.update(value: params[:value],
-                     periodicity_id: params[:periodicity_id])
-      redirect_to customer_order_check_path(@order.customer, @order)
-    else
-      render :prices
-    end
   end
 
   def check; end

@@ -5,7 +5,9 @@
 
 <% @plans.each do |plan|  %>
 
-  <%= link_to plan.name, customer_order_plan_path(plan_id: plan.id, plan_name: plan.name ), method: :post %>
+  <%= link_to plan.name,
+      customer_order_plan_path(id: plan.id, plan_id: plan.id,
+                               plan_name: plan.name ), method: :patch %>
 
   <p><%= plan.description  %> </p>
 
