@@ -1,3 +1,4 @@
+<%= render 'headbar' %>
 <h1>Novo pedido</h1>
 
 <% @categories.each do |cat| %>
@@ -7,4 +8,4 @@
 
 <% end %>
 
-<%= link_to 'Voltar', root_path %>
+<p><%= link_to 'Voltar', root_path , class:'ls-btn'%></p>

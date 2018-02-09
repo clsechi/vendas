@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       customer: Cliente
+      seller: Vendedor
     attributes:
       customer:
         name: Nome
@@ -15,3 +16,8 @@ pt-BR:
         contact: Contato
         submit: Enviar
         new_customer: Novo Cliente
+      seller:
+        name: Nome
+        email: Email
+        submit: Enviar
+        new_seller: Novo Vendedor

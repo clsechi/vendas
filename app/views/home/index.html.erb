@@ -1,13 +1,6 @@
-<h4> <%= "Olá, #{current_seller.email}" %></h4>
-<% if current_seller.admin? %>
-  <%= link_to 'Visualizar todos pedidos', orders_path %>
-  <%= link_to 'Criar novo vendedor',  new_seller_path %>
-<% else %>
-  <%= link_to 'Visualizar meus pedidos', orders_path %>
-<% end %>
-
+<h1 class="ls-title-intro ls-ico-home">Página inicial</h1>
 <%= form_tag(search_customers_path, method: "get") do %>
   <%= label_tag(:search, "Busca") %>
   <%= text_field_tag(:search) %>
-  <%= submit_tag("Pesquisar cliente") %>
+  <%= submit_tag("Pesquisar cliente", class: 'ls-btn-primary ls-btn-sm') %>
 <% end %>

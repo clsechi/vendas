@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>VendasLocaweb</title>
-    <%= csrf_meta_tags %>
+<html class="ls-theme-green">
+<head>
+  <title>VendasLocaweb</title>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag   "//assets.locaweb.com.br/locastyle/3.8.2/stylesheets/locastyle.css",  "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
 
-  <body>
-    <% if seller_signed_in?  %>
-      <%= link_to 'Sair', destroy_seller_session_path, method: :delete %>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
+  <%= render "layouts/shared/topbar" %>
+
+  <%= render "layouts/shared/sidebar" %>
+
+  <main class="ls-main ">
+    <div class="container-fluid">
+      <%= yield %>
+      <p class="ls-alert-info"><%= notice %></p>
+      <p class="ls-alert-warning"><%= alert %></p>
+    </div>
+  </main>
+
+  <%= render "layouts/shared/sidebar_notifications" %>
+
+  <!-- We recommended use jQuery 1.10 or up -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <%= javascript_include_tag "application", "//assets.locaweb.com.br/locastyle/3.8.2/javascripts/locastyle.js" %>
+</body>
 </html>

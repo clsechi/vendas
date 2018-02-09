@@ -1,5 +1,18 @@
-<% @orders.each do |order|%>
-  <%= link_to order.id, order_path(order) %>
-  <%= order.seller.name %>
-<% end %>
-<%= link_to 'Voltar', root_path %>
+<%= render 'headbar' %>
+<table class='ls-table'>
+  <thead>
+    <tr>
+      <th>ID do Pedido</th>
+      <th colspan="2">Nome do Vendedor</th>
+    <tr>
+  </thead>
+  <tbody>
+  <% @orders.each do |order|%>
+    <tr>
+      <td><%= link_to order.id, order_path(order) %></td>
+      <td> <%= order.seller.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<p><%= link_to 'Voltar', root_path , class:'ls-btn'%></p>

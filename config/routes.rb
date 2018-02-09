@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   post 'sellers/create_seller', to: 'sellers#create_seller', as: 'create_seller'
 
-  resources :customers, only: [:new, :create, :show, :edit, :update] do
+  resources :customers, only: [:index, :new, :create, :show, :edit, :update] do
     collection do
       get 'search'
     end

@@ -27,7 +27,7 @@ feature 'seller edit customer' do
     expect(page).to have_content('rua das flores')
     expect(page).to have_content('777777777-77')
     expect(page).to have_content('email@email.com')
-    expect(page).to have_content('1988-02-29')
+    expect(page).to have_content('29/02/1988')
   end
   scenario 'and must fill all fields' do
     seller = create(:seller)
