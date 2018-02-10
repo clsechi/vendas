@@ -10,7 +10,7 @@
   <tbody>
   <% @orders.each do |order|%>
     <tr>
-      <td><%= link_to order.id, customer_order_path(order, order.customer_id) %></td>
+      <td><%= link_to order.id, customer_order_path(order.customer_id, order) %></td>
       <td> <%= order.product_name %></td>
       <td> <%= order.seller.name %></td>
     </tr>

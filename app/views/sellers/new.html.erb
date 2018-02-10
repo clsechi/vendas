@@ -1,23 +1,26 @@
 <%= render 'headbar' %>
 <% if @seller.errors.any? %>
+  <p class="ls-alert-info"><%= flash[:fail] %></p>
   <% @seller.errors.full_messages.each do |msg| %>
     <p class="ls-alert-danger"><%= msg %></p>
   <% end %>
 <% end %>
 
-<%= form_for(@seller, url:{action: 'create_seller'}, class:'ls-form row') do |f| %>
+<div class="ls-label col-md-3">
+  <%= form_for(@seller, url:{action: 'create_seller'}, class:'ls-form row') do |f| %>
+      <b><%= f.label :email, class:"ls-label-text" %></b>
+      <%= f.text_field :email %>
 
-    <b><%= f.label :email, class:"ls-label-text" %></b>
-    <%= f.text_field :email %>
+      <b><%= f.label :password , class:"ls-label-text" %></b>
+      <%= f.text_field :password %>
 
-    <b><%= f.label :password , class:"ls-label-text" %></b>
-    <%= f.text_field :password %>
+      <b><%= f.label :name, class:"ls-label-text" %></b>
+      <%= f.text_field :name %>
 
-    <b><%= f.label :name, class:"ls-label-text" %></b>
-    <%= f.text_field :name %>
+      <div class="ls-actions-btn">
+        <%= f.submit 'Enviar', class:'ls-btn-primary' %>
+        <%= link_to 'Voltar', root_path , class:'ls-btn'%>
 
-    <%= f.submit 'Criar' %>
-
-<% end %>
-
-<p><%= link_to 'Voltar', root_path , class:'ls-btn'%></p>
+      </div>
+  <% end %>
+</div>

@@ -1,9 +1,10 @@
 class Category
-  attr_accessor :id, :name
+  attr_accessor :id, :name, :description
 
   def initialize(params)
     @id = params['id']
     @name = params['name']
+    @description = params['description']
   end
 
   def self.all

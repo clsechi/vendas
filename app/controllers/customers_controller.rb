@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
     if @customer.save
       redirect_to @customer
     else
-      flash.now[:notice] = 'Voce deve preencher todos os campos'
+      flash.now[:fail] = 'Voce deve preencher todos os campos'
       render :new
     end
   end
@@ -30,8 +30,8 @@ class CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
+      flash[:success] = 'Cliente atualizado com sucesso'
       redirect_to @customer
-      flash.now[:success] = 'Cliente atualizado com sucesso'
     else
       flash.now[:notice] = 'Voce deve preencher todos os campos'
       render :edit
