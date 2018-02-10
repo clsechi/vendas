@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
-    resources :orders, only:[:show, :new, :create] do
+    resources :orders, only:[:show, :new, :create, :destroy] do
       resources :products, only:[:index, :update]
       resources :plans, only:[:index, :update]
       resources :prices, only:[:index, :update]
@@ -22,6 +22,5 @@ Rails.application.routes.draw do
       post 'confirm', to: 'orders#confirm', as: 'confirm'
 
     end
-
   end
 end
