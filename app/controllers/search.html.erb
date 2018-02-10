@@ -1,7 +1,0 @@
-<%if @recipes.empty?%>
-  <p>Nenhuma receita encontrada</p>
-<%else%>
-  <% @recipes.each do |recipe| %>
-    <%= render recipe%>
-  <% end %>
-<%end%>
