@@ -8,7 +8,8 @@ class PlansController < ApplicationController
 
   def update
     set_session('plan_name', params[:plan_name])
-    if @order.update(plan_id: params[:plan_id])
+    if @order.update(plan_id: params[:plan_id],
+                     product_name: params[:plan_name])
       redirect_to customer_order_prices_path(@order.customer, @order)
     else
       render :plans

@@ -7,6 +7,10 @@ class OrdersController < ApplicationController
     @orders = list_orders
   end
 
+  def show
+    @order = Order.find(params[:customer_id])
+  end
+
   def new
     @categories = Category.all
   end
@@ -31,10 +35,6 @@ class OrdersController < ApplicationController
   end
 
   def check; end
-
-  def show
-    @order = Order.find(params[:id])
-  end
 
   private
 

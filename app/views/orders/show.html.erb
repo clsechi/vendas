@@ -1,2 +1,21 @@
-<%= render 'headbar' %> 
-<h1>Categoria: <%= @order.category_id  %> </h1>
+<%= render 'headbar' %>
+<div class='ls-box'>
+<h3 class="ls-title-3"><%= @order.product_name %></h3>
+<br>
+<p><b>Data do pedido: </b><%= l @order.created_at, format: :long %><p>
+<p><b>ID do pedido: </b><%= @order.id %><p>
+<p><b>Valor: </b><%= @order.value %><p>
+<p><b>Vendedor: </b><%= @order.seller.name %><p>
+
+  <hr>
+  <p><b>Cliente:</b> <%= @order.customer.name %> <p>
+    <% if @order.customer.cpf.blank?%>
+      <p><b>Nome da Companhia:</b> <%= @order.customer.company_name %> <p>
+      <p><b>CNPJ:</b> <%= @order.customer.cnpj %></p>
+    <% else %>
+      <p><b>CPF:</b> <%= @order.customer.cpf %></p>
+    <% end %>
+  <p><b>Email:</b> <%= @order.customer.email %> <p>
+  <p><b>Telefone:</b> <%= @order.customer.phone%><%= @order.customer.contact %><p>
+  </div>
+<p><%= link_to 'Voltar', orders_path , class:'ls-btn'%></p>

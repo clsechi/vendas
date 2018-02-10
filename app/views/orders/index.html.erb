@@ -3,13 +3,19 @@
   <thead>
     <tr>
       <th>ID do Pedido</th>
-      <th colspan="2">Nome do Vendedor</th>
+      <th>Produto</th>
+      <th>Cliente</th>
+      <th>Valor do pedido</th>
+      <th>Nome do Vendedor</th>
     <tr>
   </thead>
   <tbody>
   <% @orders.each do |order|%>
     <tr>
-      <td> <%= link_to order.id, customer_order_path(order.customer_id, order)%></td>
+      <td><%= link_to order.id, customer_order_path(order.customer_id, order) %></td>
+      <td> <%= order.product_name %></td>
+      <td> <%= order.customer.name %></td>
+      <td> <%= order.value %></td>
       <td> <%= order.seller.name %></td>
     </tr>
   <% end %>

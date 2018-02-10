@@ -12,6 +12,6 @@ class Product
                       .category_id}/products"
     products_json = Net::HTTP.get(uri)
     products_hash = JSON.parse(products_json)
-    products_hash['products'].map { |product| Product.new product }
+    products_hash['products'].map { |product| Product.new(product) }
   end
 end

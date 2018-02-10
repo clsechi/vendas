@@ -17,15 +17,6 @@ Rails.application.routes.draw do
       resources :products, only:[:index, :update]
       resources :plans, only:[:index, :update]
       resources :prices, only:[:index, :update]
-      #
-      # get 'products', to: 'orders#list_products', as: 'products'
-      # post 'products', to: 'orders#update_product', as: 'product'
-      #
-      # get 'plans', to: 'orders#list_plans', as: 'plans'
-      # post 'plans', to: 'orders#update_plan', as: 'plan'
-      #
-      # get 'prices', to: 'orders#list_prices', as: 'prices'
-      # post 'prices', to: 'orders#update_price', as: 'price'
 
       get 'check', to: 'orders#check', as: 'check'
       post 'confirm', to: 'orders#confirm', as: 'confirm'
