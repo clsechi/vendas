@@ -4,10 +4,10 @@ module OrdersSenderService
     base_uri Rails.configuration.sales['client_panel_url']
 
     def self.send_post(order)
-      options = { 'body':
-                      { 'order': order.to_json,
-                        'customer': order.customer.to_json } }
-      response = post(Rails.configuration.sales['send_order'], options)
+      params = { order: order, customer: order.customer }.to_json
+      response = post Rails.configuration.sales['send_order'],
+                      body: params,
+                      headers: { 'Content-Type': 'application/json' }
 
       unless response.success?
         raise StandardError, 'Erro interno no envio para API'
