@@ -14,9 +14,8 @@ feature 'Admin resend order' do
     visit root_path
     click_on 'Vendas Pendentes'
     click_on order.id
-    click_on 'Reenviar pedido'
 
-    expect(page).to have_content('Pedido criado com sucesso')
+    expect(page).to have_link('Reenviar pedido')
   end
 
   scenario 'and only see not sent orders in pending list' do
