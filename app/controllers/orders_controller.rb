@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
-  before_action :find_order, only: [:check]
+  before_action :find_order, only: [:check, :confirm]
   before_action :find_customer, only: [:destroy, :check]
 
   def index
@@ -36,10 +36,16 @@ class OrdersController < ApplicationController
 
   def check; end
 
+  def confirm
+    send_order @order.id
+    send_email @order.id
+  end
+
   private
 
-  def send_order
-    if OrdersSenderService::OrdersService.send_post(@order)
+  def send_order(order_id)
+    order = Order.find(order_id)
+    if OrdersSenderService::OrdersService.send_post(order)
       flash[:notice] = 'Pedido criado com sucesso!'
     else
       flash[:alert] = 'Pedido criado com sucesso, mas não enviado'

@@ -77,4 +77,25 @@ feature 'seller create order' do
     expect(page).to have_content('Periodicidade: Anual - R$ 19.9')
     expect(page).to have_button('Confirmar')
   end
+
+  scenario 'and sends email' do
+    stub_request_categories
+    stub_request_products
+    stub_request_plans
+    stub_request_prices
+    customer = create(:customer, :legal)
+    seller = create(:seller)
+
+    login_as(seller)
+    visit new_customer_order_path(customer)
+    click_on 'Hospedagem'
+    click_on 'Hospedagem'
+    click_on 'Hospedagem I'
+    click_on 'Anual - R$ 19.9'
+    click_on 'Confirmar'
+
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.subject).to eq 'Pedido realizado com sucesso'
+    expect(mail.from).to include 'no-reply@locaweb.com.br'
+  end
 end
