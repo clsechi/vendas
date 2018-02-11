@@ -9,7 +9,7 @@ RSpec.describe OrdersSenderService do
       order = create(:order, seller: seller, customer: customer)
 
       login_as seller
-      body = { 'order': order.to_json, 'customer': order.customer.to_json }
+      body = { order: order, customer: order.customer }.to_json
       url = "#{Rails.configuration.sales['client_panel_url']}"\
             "#{Rails.configuration.sales['send_order']}"
 
@@ -30,7 +30,7 @@ RSpec.describe OrdersSenderService do
       order = create(:order, seller: seller, customer: customer)
 
       login_as seller
-      body = { 'order': order.to_json, 'customer': order.customer.to_json }
+      body = { order: order, customer: order.customer }.to_json
       url = "#{Rails.configuration.sales['client_panel_url']}"\
             "#{Rails.configuration.sales['send_order']}"
 
