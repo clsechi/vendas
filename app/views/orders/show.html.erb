@@ -19,3 +19,10 @@
   <p><b>Telefone:</b> <%= @order.customer.phone%><%= @order.customer.contact %><p>
   </div>
 <p><%= link_to 'Voltar', orders_path , class:'ls-btn'%></p>
+
+<% if current_seller.admin? && @order.ready? && !@order.already_posted?%>
+  <p> <%= link_to 'Reenviar pedido',
+          resend_order_path(@order),
+          method: :post, class:'ls-btn' %>
+  </p>  
+<% end %>

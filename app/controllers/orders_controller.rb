@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:customer_id])
+    @order = Order.find(params[:id])
   end
 
   def new
@@ -19,7 +19,8 @@ class OrdersController < ApplicationController
     set_session('category_name', params[:category_name])
     @order = Order.new(customer_id: params[:customer_id],
                        category_id: params[:category_id],
-                       seller_id: current_seller.id)
+                       seller_id: current_seller.id,
+                       already_posted: false, ready: false)
     if @order.save
       redirect_to customer_order_products_path(@order.customer, @order)
     else
@@ -41,6 +42,17 @@ class OrdersController < ApplicationController
   def confirm
     send_order @order.id if @order.ready?
     send_email @order.id if @order.ready?
+  end
+
+  def pending
+    @orders = Order.where(ready: true, already_posted: false)
+  end
+
+  def resend
+    @order = Order.find(params[:id])
+    send_order @order.id
+    send_email @order.id
+    redirect_to root_path
   end
 
   private

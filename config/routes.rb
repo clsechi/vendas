@@ -4,7 +4,14 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :orders, only:[:index, :show]
+  resources :orders, only:[:index, :show] do
+    member do
+      post 'resend'
+    end
+    collection do
+      get 'pending'
+    end
+  end
   resources :sellers, only:[:new, :show]
 
   post 'sellers/create_seller', to: 'sellers#create_seller', as: 'create_seller'
