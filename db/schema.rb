@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209233506) do
+ActiveRecord::Schema.define(version: 20180211041221) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20180209233506) do
     t.integer "periodicity_id"
     t.decimal "value"
     t.string "product_name"
+    t.boolean "ready"
+    t.boolean "already_posted"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["seller_id"], name: "index_orders_on_seller_id"
   end

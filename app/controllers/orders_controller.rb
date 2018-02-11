@@ -34,11 +34,13 @@ class OrdersController < ApplicationController
     redirect_to root_path
   end
 
-  def check; end
+  def check
+    @order&.update(ready: true)
+  end
 
   def confirm
-    send_order @order.id
-    send_email @order.id
+    send_order @order.id if @order.ready?
+    send_email @order.id if @order.ready?
   end
 
   private
@@ -46,8 +48,10 @@ class OrdersController < ApplicationController
   def send_order(order_id)
     order = Order.find(order_id)
     if OrdersSenderService::OrdersService.send_post(order)
+      order.update(already_posted: true)
       flash[:notice] = 'Pedido criado com sucesso!'
     else
+      order.update(already_posted: false)
       flash[:alert] = 'Pedido criado com sucesso, mas não enviado'
     end
   end
