@@ -2,27 +2,27 @@
 <div class='ls-box'>
 <h3 class="ls-title-3"><%= @order.product_name %></h3>
 <br>
-<p><b>Data do pedido: </b><%= l @order.created_at, format: :long %><p>
-<p><b>ID do pedido: </b><%= @order.id %><p>
-<p><b>Valor: </b><%= @order.value %><p>
-<p><b>Vendedor: </b><%= @order.seller.name %><p>
+<p><b> <%= t(:order_date) %>: </b><%= l @order.created_at, format: :long %><p>
+<p><b> <%= t(:order_id) %>: </b><%= @order.id %><p>
+<p><b> <%= t(:value) %>: </b><%= @order.value %><p>
+<p><b> <%= t(:seller) %>: </b><%= @order.seller.name %><p>
 
   <hr>
-  <p><b>Cliente:</b> <%= @order.customer.name %> <p>
+  <p><b> <%= t(:customer) %>:</b> <%= @order.customer.name %> <p>
     <% if @order.customer.cpf.blank?%>
-      <p><b>Nome da Companhia:</b> <%= @order.customer.company_name %> <p>
+      <p><b> <%= t(:company_name) %>:</b> <%= @order.customer.company_name %> <p>
       <p><b>CNPJ:</b> <%= @order.customer.cnpj %></p>
     <% else %>
       <p><b>CPF:</b> <%= @order.customer.cpf %></p>
     <% end %>
-  <p><b>Email:</b> <%= @order.customer.email %> <p>
-  <p><b>Telefone:</b> <%= @order.customer.phone%><%= @order.customer.contact %><p>
+  <p><b> <%= t(:email) %>:</b> <%= @order.customer.email %> <p>
+  <p><b> <%= t(:phone) %>:</b> <%= @order.customer.phone%><%= @order.customer.contact %><p>
   </div>
-<p><%= link_to 'Voltar', orders_path , class:'ls-btn'%></p>
+<p><%= link_to t(:back), orders_path , class:'ls-btn'%></p>
 
 <% if current_seller.admin? && @order.ready? && !@order.already_posted?%>
-  <p> <%= link_to 'Reenviar pedido',
+  <p> <%= link_to t(:resend_order),
           resend_order_path(@order),
           method: :post, class:'ls-btn' %>
-  </p>  
+  </p>
 <% end %>

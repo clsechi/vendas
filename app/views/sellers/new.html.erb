@@ -9,17 +9,17 @@
 <div class="ls-label col-md-3">
   <%= form_for(@seller, url:{action: 'create_seller'}, class:'ls-form row') do |f| %>
       <b><%= f.label :email, class:"ls-label-text" %></b>
-      <%= f.text_field :email %>
+      <%= f.text_field :email, placeholder:'Email' %>
 
-      <b><%= f.label :password , class:"ls-label-text" %></b>
-      <%= f.text_field :password %>
+      <b><%= f.label t(:password) , class:"ls-label-text" %></b>
+      <%= f.text_field :password, placeholder: t(:password) %>
 
-      <b><%= f.label :name, class:"ls-label-text" %></b>
-      <%= f.text_field :name %>
+      <b><%= f.label t(:name), class:"ls-label-text" %></b>
+      <%= f.text_field :name, placeholder: t(:name) %>
 
       <div class="ls-actions-btn">
-        <%= f.submit 'Enviar', class:'ls-btn-primary' %>
-        <%= link_to 'Voltar', root_path , class:'ls-btn'%>
+        <%= f.submit t(:submit), class:'ls-btn-primary' %>
+        <%= link_to t(:back), root_path , class:'ls-btn'%>
 
       </div>
   <% end %>

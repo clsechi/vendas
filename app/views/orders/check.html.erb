@@ -1,16 +1,16 @@
 <%= render 'headbar' %>
 <div class='ls-box'>
-<h5 class="ls-title-3">Pedido</h5>
+<h5 class="ls-title-3"> <%= t(:order) %> </h5>
 <br>
-<p><b>Categoria: </b><%= session[:category_name] %></p>
-<p><b>Produto: </b><%= session[:product_name] %></p>
-<p><b>Plano: </b><%= session[:plan_name] %></p>
-<p><b>Periodicidade: </b><%= session[:price_name] %></p>
+<p><b> <%= t(:category) %>: </b><%= session[:category_name] %></p>
+<p><b> <%= t(:product) %>: </b><%= session[:product_name] %></p>
+<p><b> <%= t(:plan) %>: </b><%= session[:plan_name] %></p>
+<p><b> <%= t(:periodicity) %>: </b><%= session[:price_name] %></p>
 </div>
 <div>
-<p><%= button_to 'Confirmar', customer_order_confirm_path(@order), class:'ls-btn-primary'%></p>
-<p><%= link_to 'Cancelar venda',[@customer, @order],
+<p><%= button_to t(:confirm), customer_order_confirm_path(@order), class:'ls-btn-primary'%></p>
+<p><%= link_to t(:cancel_sale),[@customer, @order],
         method: :delete,
-        data: { confirm: 'Tem certeza que deseja cancelar?'},
+        data: { confirm: t(:are_you_sure)},
         class:'ls-btn-primary-danger' %> </p>
 <div>

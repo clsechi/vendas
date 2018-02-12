@@ -1,0 +1,30 @@
+en:
+  sales: Sales
+  order: Order
+  category: Category
+  product: Product
+  plan: Plan
+  periodicity: Periodicity
+  confirm: Confirm
+  are_you_sure: Are you sure you want to cancel?
+  order_placed: Order completed
+  cancel_sale: Cancel the sale
+  new_sale: New Sale
+  company_name: Company Name
+  order_date: Request Date
+  order_id: Order ID
+  value: Value
+  seller: Seller
+  customer: Customer
+  email: Email
+  phone: Phone
+  back: Back
+  resend_order: Resend Order
+  order_value: Order Value
+  seller_name: Seller Name
+  pending_sale: Pending Sales
+  new_order: New Order
+  select_category: Select category of the plan
+  select_plan: Select Plan
+  select_periodicity: Select Periodicity
+  select_product: Select Product

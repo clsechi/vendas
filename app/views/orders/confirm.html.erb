@@ -1,10 +1,10 @@
-<%= render 'headbar' %> 
+<%= render 'headbar' %>
 <div class='ls-box'>
-<h5 class="ls-title-3">Pedido Realizado</h5>
+<h5 class="ls-title-3"> <%= t(:order_placed) %> </h5>
 <br>
-<p><b>Categoria: </b><%= session[:category_name] %></p>
-<p><b>Produto: </b><%= session[:product_name] %></p>
-<p><b>Plano: </b><%= session[:plan_name] %></p>
-<p><b>Periodicidade: </b><%= session[:price_name] %></p>
+<p><b> <%= t(:category) %>: </b><%= session[:category_name] %></p>
+<p><b> <%= t(:product) %>: </b><%= session[:product_name] %></p>
+<p><b> <%= t(:plan) %>: </b><%= session[:plan_name] %></p>
+<p><b> <%= t(:periodicity) %>: </b><%= session[:price_name] %></p>
 </div>
-<p><%= link_to 'Nova Venda', root_path , class:'ls-btn'%></p>
+<p><%= link_to t(:new_sale), root_path , class:'ls-btn'%></p>
