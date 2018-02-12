@@ -3,6 +3,7 @@ pt-BR:
     models:
       customer: Cliente
       seller: Vendedor
+      order: Venda
     attributes:
       customer:
         name: Nome
@@ -14,10 +15,10 @@ pt-BR:
         birth_date: Data de Nascimento
         company_name: Nome da Companhia
         contact: Contato
-        submit: Enviar
-        new_customer: Novo Cliente
       seller:
         name: Nome
         email: Email
-        submit: Enviar
-        new_seller: Novo Vendedor
+      order:
+        status: Estado
+        value: Valor
+        product_name: Nome do Produto

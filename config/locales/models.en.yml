@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    models:
+      customer: Client
+      seller: Seller
+      order: Sale
+    attributes:
+      customer:
+        name: Name
+        address: Address
+        cpf: CPF
+        cnpj: CNPJ
+        email: Email
+        phone: Phone
+        birth_date: Birth Date
+        company_name: Company name
+        contact: Contact
+      seller:
+        name: Name
+        email: Email
+      order:
+        status: Status
+        value: Value
+        product_name: Product Name

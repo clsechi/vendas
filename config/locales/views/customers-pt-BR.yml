@@ -1,0 +1,17 @@
+pt-BR:
+  customer_name: Nome do Cliente
+  phone: Telefone
+  person: Pessoa
+  new_customer: Novo Cliente
+  back: Voltar
+  submit: Enviar
+  customers: Clientes
+  legal_person: Pessoa Física
+  company_person: Pessoa Juridica
+  edit_customer: Editar Cliente
+  result_search_by: Resultado da busca por
+  address: Endereço
+  company_name: Nome da Companhia
+  birth_date: Data de nascimento
+  phone: Telefone
+  new_sale: Nova Venda
