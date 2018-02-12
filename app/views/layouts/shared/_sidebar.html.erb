@@ -8,6 +8,7 @@
         <% if seller_signed_in?%>
           <% if current_seller.admin? %>
             <li><%= link_to 'Criar novo vendedor',  new_seller_path, html_options = {class: 'ls-ico-user-add' } %></li>
+            <li> <%= link_to 'Vendas Pendentes', pending_orders_path, html_options = { class: 'ls-ico-origins'} %> </li>
           <% end %>
           <li> <%= link_to 'Clientes', customers_path, html_options = {class: 'ls-ico-users' } %></li>
           <li> <%= link_to 'Vendas', orders_path, html_options = { class: 'ls-ico-cart'} %> </li>

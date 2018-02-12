@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_seller!, only: [:index, :new, :create, :show]
-  before_action :find_order, only: [:check]
+  before_action :find_order, only: [:check, :confirm]
   before_action :find_customer, only: [:destroy, :check]
 
   def index
@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:customer_id])
+    @order = Order.find(params[:id])
   end
 
   def new
@@ -19,7 +19,8 @@ class OrdersController < ApplicationController
     set_session('category_name', params[:category_name])
     @order = Order.new(customer_id: params[:customer_id],
                        category_id: params[:category_id],
-                       seller_id: current_seller.id)
+                       seller_id: current_seller.id,
+                       already_posted: false, ready: false)
     if @order.save
       redirect_to customer_order_products_path(@order.customer, @order)
     else
@@ -34,14 +35,35 @@ class OrdersController < ApplicationController
     redirect_to root_path
   end
 
-  def check; end
+  def check
+    @order&.update(ready: true)
+  end
+
+  def confirm
+    send_order @order.id if @order.ready?
+    send_email @order.id if @order.ready?
+  end
+
+  def pending
+    @orders = Order.where(ready: true, already_posted: false)
+  end
+
+  def resend
+    @order = Order.find(params[:id])
+    send_order @order.id
+    send_email @order.id
+    redirect_to root_path
+  end
 
   private
 
-  def send_order
-    if OrdersSenderService::OrdersService.send_post(@order)
+  def send_order(order_id)
+    order = Order.find(order_id)
+    if OrdersSenderService::OrdersService.send_post(order)
+      order.update(already_posted: true)
       flash[:notice] = 'Pedido criado com sucesso!'
     else
+      order.update(already_posted: false)
       flash[:alert] = 'Pedido criado com sucesso, mas não enviado'
     end
   end
