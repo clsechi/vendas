@@ -7,7 +7,7 @@
         </a>
         <nav class="ls-dropdown-nav ls-user-menu" aria-hidden="false">
           <ul>
-            <span><%= link_to 'Sair', destroy_seller_session_path, method: :delete %></span>
+            <span><%= link_to t(:exit), destroy_seller_session_path, method: :delete %></span>
           </ul>
         </nav>
       </div>
@@ -17,7 +17,7 @@
   <h1 class="ls-brand-name">
     <%= link_to(root_path, html_options = {class:"ls-ico-earth"} ) do %>
       <small>Locaweb</small>
-      <label>Vendas</label>
+      <label> <%= t(:sale) %> </label>
     <% end %>
   </h1>
 </div>

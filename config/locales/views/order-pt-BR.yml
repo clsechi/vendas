@@ -1,0 +1,30 @@
+pt-BR:
+  sales: Vendas
+  order: Pedido
+  category: Categoria
+  product: Produto
+  plan: Plano
+  periodicity: Periodicidade
+  confirm: Confirmar
+  are_you_sure: Tem certeza que deseja cancelar?
+  order_placed: Pedido realizado
+  cancel_sale: Cancelar venda
+  new_sale: Nova Venda
+  company_name: Nome da Companhia
+  order_date: Data do pedido
+  order_id: ID do pedido
+  value: Valor
+  seller: Vendedor
+  customer: Cliente
+  email: Email
+  phone: Telefone
+  back: Voltar
+  resend_order: Reenviar pedido
+  order_value: Valor do pedido
+  seller_name: Nome do Vendedor
+  pending_sale: Vendas Pendentes
+  new_order: Novo pedido
+  select_category: Selecione a categoria do produto
+  select_plan: Selecione o plano
+  select_periodicity: Selecione a periodicidade
+  select_product: Selecione o produto

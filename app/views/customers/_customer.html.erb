@@ -1,10 +1,10 @@
 <table class='ls-table'>
   <thead>
     <tr>
-      <th>Nome do Cliente</th>
+      <th> <%= t :customer_name %> </th>
       <th>CPF/CNPJ</th>
-      <th>Telefone</th>
-      <th colspan="2">Pessoa</th>
+      <th>  <%= t :phone %> </th>
+      <th colspan="2"> <%= t :person %> </th>
     <tr>
   </thead>
   <tbody>
@@ -25,13 +25,13 @@
         <% end %>
 
         <% if customer.legal_person? %>
-          <td> Pessoa Física </td>
+          <td> <%= t(:legal_person) %> </td>
         <% else %>
-          <td> Pessoa Juridica </td>
+          <td> <%= t(:company_person) %> </td>
         <% end %>
     </tr>
     <% end %>
   </tbody>
 </table>
-<p><%= link_to 'Novo Cliente', new_customer_path, class:'ls-btn-primary' %>
-<%= link_to 'Voltar', root_path , class:'ls-btn'%></p>
+<p><%= link_to t(:new_customer), new_customer_path, class:'ls-btn-primary' %>
+<%= link_to t(:back), root_path , class:'ls-btn'%></p>
