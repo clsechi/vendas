@@ -33,7 +33,7 @@ class CustomersController < ApplicationController
       flash[:success] = 'Cliente atualizado com sucesso'
       redirect_to @customer
     else
-      flash.now[:notice] = 'Voce deve preencher todos os campos'
+      flash.now[:fail] = 'Voce deve preencher todos os campos'
       render :edit
     end
   end
@@ -43,7 +43,7 @@ class CustomersController < ApplicationController
     @customers = Customer.where('name like ? OR cpf = ? OR cnpj = ?',
                                 "%#{@search_param}%", @search_param,
                                 @search_param)
-    flash[:notice] = 'Cliente nao encontrado' if @customers.empty?
+    flash[:not_found] = 'Cliente nao encontrado' if @customers.empty?
   end
 
   private
