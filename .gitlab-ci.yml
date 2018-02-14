@@ -13,6 +13,7 @@ stages:
   - quality assurance
 
 before_script:
+  - mv config/sales.yml.sample config/sales.yml
   - bundle install --without development production -j $(nproc) --path .ci_cache
 
 rspec:
