@@ -12,14 +12,30 @@ Things you may want to cover:
   5.1.4
 
 * System dependencies
-  install phantomJS
+  
+   Install phantonJS and add into PATH
 
+     Linux:
+    - curl -L -O https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
+    - tar -jxvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs
+    - mv phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin/
+    - phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 && rm -rf phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin
+    - chmod 755 /usr/local/bin/phantomjs
+    
+     MacOS:
+    - Homebrew: brew install phantomjs
+    
+    Windows:
+    Download the precompiled binary for Windows
+    - https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-windows.zip
+    
 * Gems
   devise;
   rubocop;
   rspec-rails;
   simplecov;
   factory_bot_rails;
+  poltergeist
 
 * Configuration
 
