@@ -16,11 +16,10 @@ Things you may want to cover:
    Install phantonJS and add into PATH
 
      Linux:
-    - curl -L -O https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
-    - tar -jxvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs
-    - mv phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/local/bin/
-    - phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 && rm -rf phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin
-    - chmod 755 /usr/local/bin/phantomjs
+    Download the file from phantomjs official site
+    https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+    
+    Extract the tarball and copy bin/phantomjs into your PATH ( /usr/local/bin )
     
      MacOS:
     - Homebrew: brew install phantomjs
