@@ -108,6 +108,8 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      valid_cpf: inválido
+      valid_cnpj: inválido
       accepted: deve ser aceito
       blank: não pode ficar em branco
       present: deve ficar em branco

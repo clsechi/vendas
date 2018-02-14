@@ -28,7 +28,7 @@
     <div id="legal_div" style="display:block;">
       <br>
       <b><%= f.label :cpf, class:"ls-label-text" %></b>
-      <%= f.text_field :cpf %>
+      <%= f.text_field :cpf, pattern: '/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/'%>
 
       <b><%= f.label :phone, class:"ls-label-text" %></b>
       <%= f.text_field :phone %>
