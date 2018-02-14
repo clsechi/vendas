@@ -12,6 +12,7 @@ Things you may want to cover:
   5.1.4
 
 * System dependencies
+  install phantomJS
 
 * Gems
   devise;
