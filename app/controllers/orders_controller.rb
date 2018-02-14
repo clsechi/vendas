@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
     order = Order.find(order_id)
     if OrdersSenderService::OrdersService.send_post(order)
       order.update(already_posted: true)
-      flash[:notice] = 'Pedido criado com sucesso!'
+      flash[:created] = 'Pedido criado com sucesso!'
     else
       order.update(already_posted: false)
       flash[:alert] = 'Pedido criado com sucesso, mas não enviado'
