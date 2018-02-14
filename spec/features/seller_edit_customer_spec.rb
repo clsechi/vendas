@@ -29,7 +29,7 @@ feature 'seller edit customer' do
     expect(page).to have_content('email@email.com')
     expect(page).to have_content('29/02/1988')
   end
-  scenario 'and must fill all fields' do
+  scenario 'and must fill all fields', :js do
     seller = create(:seller)
     customer = create(:customer, :legal)
 
@@ -45,6 +45,7 @@ feature 'seller edit customer' do
     fill_in 'Nome', with: ''
     fill_in 'Endereco', with: ''
     fill_in 'Email', with: ''
+    check 'legal_checkbox'
     fill_in 'Nome da Companhia', with: ''
     fill_in 'Contato', with: ''
     click_on 'Enviar'

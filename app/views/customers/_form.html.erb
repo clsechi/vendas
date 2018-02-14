@@ -5,26 +5,40 @@
   <% end %>
 <% end %>
 
-  <div class="ls-label col-md-3">
-    <%= form_for @customer, class:'ls-form row' do |f| %>
+<div class="ls-label col-md-3">
+  <%= form_for @customer, class:'ls-form row' do |f| %>
+    <div>
       <b><%= f.label :name, class:"ls-label-text" %></b>
       <%= f.text_field :name %>
 
       <b><%= f.label :address, class:"ls-label-text" %></b>
       <%= f.text_field :address %>
 
-      <b><%= f.label :cpf, class:"ls-label-text" %></b>
-      <%= f.text_field :cpf %>
-
       <b><%= f.label :email, class:"ls-label-text" %></b>
       <%= f.text_field :email %>
+    </div>
+
+    <div class="legal_checkbox">
+      <br>
+      <b><%= f.label 'Pessoa Juridica?', class:"ls-label-text" %></b>
+      <input id="legal_checkbox"  class="checkbox" name="legal_checkbox" type="checkbox" value="false" />
+      <br>
+    </div>
+
+    <div id="legal_div" style="display:block;">
+      <br>
+      <b><%= f.label :cpf, class:"ls-label-text" %></b>
+      <%= f.text_field :cpf %>
 
       <b><%= f.label :phone, class:"ls-label-text" %></b>
       <%= f.text_field :phone %>
 
       <b><%= f.label :birth_date, class:"ls-label-text" %></b>
       <%= f.date_field :birth_date %>
+    </div>
 
+    <div id="company_div" style="display:none;">
+      <br>
       <b><%= f.label :cnpj, class:"ls-label-text" %></b>
       <%= f.text_field :cnpj %>
 
@@ -33,10 +47,27 @@
 
       <b><%= f.label :contact, class:"ls-label-text" %></b>
       <%= f.text_field :contact %>
+    </div>
 
-      <div class="ls-actions-btn">
-        <%= f.submit t(:submit), class:'ls-btn-primary' %>
-        <%= link_to t(:back), root_path , class:'ls-btn'%>
-      </div>
-    <% end %>
-  </div>
+    <div class="ls-actions-btn">
+      <%= f.submit t(:submit), class:'ls-btn-primary' %>
+      <%= link_to t(:back), root_path , class:'ls-btn'%>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  var checkbox = document.getElementById('legal_checkbox');
+  var legal_div = document.getElementById('legal_div');
+  var company_div = document.getElementById('company_div');
+
+  checkbox.onchange = function() {
+    if(this.checked) {
+      company_div.style['display'] = 'block';
+      legal_div.style['display'] = 'none';
+    } else {
+      company_div.style['display'] = 'none';
+      legal_div.style['display'] = 'block';
+    }
+  };
+  </script>
