@@ -18,6 +18,7 @@ AllCops:
     - 'script/**/*'
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
+    - 'app/validators/*'
   UseCache: false
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
