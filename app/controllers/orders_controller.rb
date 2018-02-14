@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
   end
 
   def pending
-    @orders = Order.where(ready: true, already_posted: false)
+    @orders = Order.where(already_posted: false)
   end
 
   def resend
