@@ -132,6 +132,46 @@ feature 'seller create customer' do
 
     expect(page).to have_content('CNPJ já está em uso')
   end
+  scenario 'and cpf is invalid' do
+    seller = create(:seller)
+
+    login_as(seller)
+    visit root_path
+
+    fill_in 'Busca', with: '987.952.930-86'
+    click_on 'Pesquisar cliente'
+    click_on 'Novo Cliente'
+
+    fill_in 'Nome', with: 'Maria'
+    fill_in 'Endereco', with: 'rua das flores'
+    fill_in 'CPF', with: '111.111.111-11'
+    fill_in 'Email', with: 'email@email.com'
+    fill_in 'Telefone', with: '1199999999'
+    fill_in 'Data de Nascimento', with: '1988-02-29'
+
+    click_on 'Enviar'
+
+    expect(page).to have_content('CPF inválido')
+  end
+  scenario 'and cnpj is invalid', :js do
+    seller = create(:seller)
+
+    login_as(seller)
+    visit root_path
+    click_on 'Pesquisar cliente'
+    click_on 'Novo Cliente'
+
+    fill_in 'Nome', with: 'Maria'
+    fill_in 'Endereco', with: 'rua das flores'
+    check 'legal_checkbox'
+    fill_in 'CNPJ', with: '11.111.111/1111-11'
+    fill_in 'Email', with: 'email@email.com'
+    fill_in 'Nome da Companhia', with: 'floricultura da Maria'
+    fill_in 'Contato', with: '1199999999'
+    click_on 'Enviar'
+
+    expect(page).to have_content('CNPJ inválido')
+  end
   scenario 'and permit create two customer as same type (PJ)', :js do
     seller = create(:seller)
 
