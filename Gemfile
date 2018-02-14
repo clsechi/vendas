@@ -48,6 +48,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'simplecov'
   gem 'webmock'
+  gem 'poltergeist'
 end
 
 group :development do

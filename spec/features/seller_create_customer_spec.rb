@@ -26,7 +26,7 @@ feature 'seller create customer' do
     expect(page).to have_content('email@email.com')
     expect(page).to have_content('29/02/1988')
   end
-  scenario 'and create a PJ customer' do
+  scenario 'and create a PJ customer', :js do
     seller = create(:seller)
 
     login_as(seller)
@@ -35,8 +35,10 @@ feature 'seller create customer' do
     click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
+
     fill_in 'Nome', with: 'Maria'
     fill_in 'Endereco', with: 'rua das flores'
+    check 'legal_checkbox'
     fill_in 'CNPJ', with: '93.167.578/0001-18'
     fill_in 'Email', with: 'email@email.com'
     fill_in 'Nome da Companhia', with: 'floricultura da Maria'
@@ -50,7 +52,7 @@ feature 'seller create customer' do
     expect(page).to have_content('floricultura da Maria')
     expect(page).to have_content('1199999999')
   end
-  scenario 'and must fill all fields' do
+  scenario 'and must fill all fields', :js do
     seller = create(:seller)
 
     login_as(seller)
@@ -59,16 +61,18 @@ feature 'seller create customer' do
     click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
+
     fill_in 'Nome', with: ''
     fill_in 'Endereco', with: ''
     fill_in 'Email', with: ''
+    check 'legal_checkbox'
     fill_in 'Nome da Companhia', with: ''
     fill_in 'Contato', with: ''
     click_on 'Enviar'
 
     expect(page).to have_content('Voce deve preencher todos os campos')
   end
-  scenario 'and email is unique' do
+  scenario 'and email is unique', :js do
     seller = create(:seller)
     create(:customer, :legal, email: 'email@repetido.com')
 
@@ -80,6 +84,7 @@ feature 'seller create customer' do
 
     fill_in 'Nome', with: 'Maria'
     fill_in 'Endereco', with: 'rua das flores'
+    check 'legal_checkbox'
     fill_in 'CNPJ', with: '93.167.578/0001-18'
     fill_in 'Email', with: 'email@repetido.com'
     fill_in 'Nome da Companhia', with: 'floricultura da Maria'
@@ -108,7 +113,7 @@ feature 'seller create customer' do
 
     expect(page).to have_content('CPF já está em uso')
   end
-  scenario 'and cnpj is unique' do
+  scenario 'and cnpj is unique', :js do
     seller = create(:seller)
     customer = create(:customer, :company, cnpj: '89.495.945/0001-35')
 
@@ -120,6 +125,7 @@ feature 'seller create customer' do
 
     fill_in 'Nome', with: 'Maria'
     fill_in 'Endereco', with: 'rua das flores'
+    check 'legal_checkbox'
     fill_in 'CNPJ', with: '89.495.945/0001-35'
     fill_in 'Email', with: 'email@email.com'
     fill_in 'Nome da Companhia', with: 'floricultura da Maria'
@@ -128,7 +134,7 @@ feature 'seller create customer' do
 
     expect(page).to have_content('CNPJ já está em uso')
   end
-  scenario 'and permit create two customer as same type (PJ)' do
+  scenario 'and permit create two customer as same type (PJ)', :js do
     seller = create(:seller)
 
     login_as(seller)
@@ -138,6 +144,7 @@ feature 'seller create customer' do
 
     fill_in 'Nome', with: 'Maria'
     fill_in 'Endereco', with: 'rua das flores'
+    check 'legal_checkbox'
     fill_in 'CNPJ', with: '89.495.945/0001-35'
     fill_in 'Email', with: 'email@email.com'
     fill_in 'Nome da Companhia', with: 'floricultura da Maria'
@@ -148,6 +155,7 @@ feature 'seller create customer' do
     click_on 'Novo Cliente'
     fill_in 'Nome', with: 'João'
     fill_in 'Endereco', with: 'rua 13 de maio'
+    check 'legal_checkbox'
     fill_in 'CNPJ', with: '63.755.929/0001-25'
     fill_in 'Email', with: 'email_user@email.com'
     fill_in 'Nome da Companhia', with: 'floricultura da Maria'
