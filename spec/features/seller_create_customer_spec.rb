@@ -35,7 +35,6 @@ feature 'seller create customer' do
     click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
 
-
     fill_in 'Nome', with: 'Maria'
     fill_in 'Endereco', with: 'rua das flores'
     check 'legal_checkbox'
@@ -60,7 +59,6 @@ feature 'seller create customer' do
     fill_in 'Busca', with: '777777777-77'
     click_on 'Pesquisar cliente'
     click_on 'Novo Cliente'
-
 
     fill_in 'Nome', with: ''
     fill_in 'Endereco', with: ''
