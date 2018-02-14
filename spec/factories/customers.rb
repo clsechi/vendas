@@ -5,13 +5,13 @@ FactoryBot.define do
     email '123@teste.com'
 
     trait :legal do
-      cpf 'MyString'
+      cpf '987.952.930-86'
       phone 'MyString'
       birth_date '2018-01-30'
     end
 
     trait :company do
-      cnpj 'MyString'
+      cnpj '38.195.177/0001-63'
       company_name 'MyString'
       contact 'MyString'
     end
