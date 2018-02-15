@@ -77,5 +77,14 @@ Para o login na aplicação, há um administrador pré-definido:
 - Usuário: admin@admin.com
 - Senha: 12345678
 
-### API
+### Colaboradores
+
+- [Carlos Sechi](https://github.com/clsechi)
+- [Ingrid Rodrigues](https://github.com/IngridRodrigues15)
+- [Ítalo Almeida](https://github.com/italoalmeida89)
+- [Igor Duarte](https://github.com/igorduarte)
+- [Jamil Martinez](https://github.com/jamilmz)
+- [Lucca Rosa](https://github.com/LuccaRosa)
+- [Thiago Hocsis](https://github.com/ThiagoHocsis)
+- [Thiago Talarini](https://github.com/talarini)
 
