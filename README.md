@@ -2,7 +2,7 @@
 
 ## Vendas Internas
 
-Esta aplicação tem como função realizar a venda de produtos locaweb a partir de
+Esta aplicação tem como função realizar a venda de produtos Locaweb a partir de
 dados fornecidos pela API de Produtos.
 
 Neste sistema, temos uma interface para o vendedor e uma API que fornece dados 
@@ -17,7 +17,7 @@ Rails 5.1.4
 
 - [Devise](https://github.com/plataformatec/devise)
 
-- [Locaweb Style](http://opensource.locaweb.com.br/locawebstyle/)
+- [LocaStyle](http://opensource.locaweb.com.br/locawebstyle/)
 
 - [Capybara](https://github.com/teamcapybara/capybara)
 
@@ -30,6 +30,10 @@ Rails 5.1.4
 - [SimpleCov](https://github.com/colszowka/simplecov)
 
 - [Poltergeist](https://github.com/teampoltergeist/poltergeist)
+ 
+-[HTTParty](https://github.com/jnunemaker/httparty)
+
+-[WebMock](https://github.com/bblimke/webmock)
  
 ### Instalação
 
