@@ -5,7 +5,7 @@ module OrdersSenderService
 
     def self.send_post(order)
       params = { order: order, customer: order.customer }.to_json
-      response = post '/api/orders',
+      response = post '/orders',
                       body: params,
                       headers: { 'Content-Type': 'application/json' }
 

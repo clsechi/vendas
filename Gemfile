@@ -43,6 +43,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   # gem 'selenium-webdriver'
   gem 'factory_bot_rails'
+  gem 'poltergeist'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
   gem 'rubocop'

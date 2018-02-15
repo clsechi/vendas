@@ -1,12 +1,9 @@
 production:
-  client_panel_url: http://localhost:3002
+  client_panel_url: http://localhost:3002/api
   products_url: http://localhost:3001/api
-  send_order: /api/orders
 development:
-  client_panel_url: http://localhost:3002
+  client_panel_url: http://localhost:3002/api
   products_url: http://localhost:3001/api
-  send_order: /api/orders
 test:
-  client_panel_url: http://localhost:3002
+  client_panel_url: http://localhost:3002/api
   products_url: http://localhost:3001/api
-  send_order: /api/orders
