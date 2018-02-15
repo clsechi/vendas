@@ -2,7 +2,10 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
-SimpleCov.start ("rails")
+SimpleCov.start ("rails") do
+ add_filter "app/channels/application_cable/*"
+ add_filter "app/jobs/*"
+end
 
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production

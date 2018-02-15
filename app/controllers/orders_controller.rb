@@ -73,10 +73,6 @@ class OrdersController < ApplicationController
     OrderMailer.order_email(order).deliver_now
   end
 
-  def order_params
-    params.require(:order).permit(:category_id)
-  end
-
   def find_order
     @order = Order.find(params[:order_id])
   end

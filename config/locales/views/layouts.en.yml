@@ -5,3 +5,4 @@ en:
   customers: Customers
   sales: Sales
   exit: Exit
+  sale_explanation: To start a new sale, search the customer (Name, CPF or CNPJ).
