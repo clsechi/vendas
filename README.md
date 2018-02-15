@@ -70,6 +70,46 @@ Faça o download do arquivo diretamente do site oficial do PhantomJS
 - https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-windows.zip
 ```
 
+### API
+
+**Verbo HTTP / *HTTP verb*:**
+
+> **POST**
+
+**Rota / *Path*:**
+>  **/api/orders**
+
+**Cabeçalhos / *Headers*:**
+> **Content-Type: application/json**
+
+
+**Corpo da resposta / *Response body* ex.:**
+
+```json
+ {
+  "order": {
+  "customer_id": "1",
+  "product_id": "1",
+  "created_at": "2018-02-05T15:27:28.842Z",
+  "category_id": "1",
+  "plan_id": "1",
+  "price": "40.00"
+ },
+ "customer": {
+  "id": "1",
+  "name": "Anthony Fantano",
+  "address": "Alameda Santos, 777",
+  "cpf": "12719726918",
+  "cnpj": "",
+  "email": "cliente@email.com",
+  "phone": "11912341234",
+  "company_name": "",
+  "contact": ""
+ }
+}
+```
+
+
 ### Login
 
 Para o login na aplicação, há um administrador pré-definido:
