@@ -22,7 +22,7 @@ Things you may want to cover:
     Extract the tarball and copy bin/phantomjs into your PATH ( /usr/local/bin )
     tar -jxvf arquivo
     navegue ate a pasta bin do arquivo
-    sudo phantonjs /usr/local/bin
+    sudo mv phantonjs /usr/local/bin
     
      MacOS:
     - Homebrew: brew install phantomjs
