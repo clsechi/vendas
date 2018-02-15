@@ -1,8 +1,5 @@
 # Vendas
 
-
-## Vendas Internas
-
 Esta aplicação tem como função realizar a venda de produtos Locaweb a partir de
 dados fornecidos pela API de Produtos.
 
