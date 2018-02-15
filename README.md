@@ -1,51 +1,90 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Vendas Internas
 
-Things you may want to cover:
+Esta aplicação tem como função realizar a venda de produtos locaweb a partir de
+dados fornecidos pela API de Produtos.
 
-* Ruby version
-  2.3.3
+Neste sistema, temos uma interface para o vendedor e uma API que fornece dados 
+de novos cliente e novos pedidos feitos.
 
-* Rails version
-  5.1.4
+### Versões
 
-* System dependencies
-  
-   Install phantonJS and add into PATH
+Ruby 2.3.3
+Rails 5.1.4
 
-     Linux:
-    Download the file from phantomjs official site
-    https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
-    
-    Extract the tarball and copy bin/phantomjs into your PATH ( /usr/local/bin )
-    
-     MacOS:
-    - Homebrew: brew install phantomjs
-    
-    Windows:
-    Download the precompiled binary for Windows
-    - https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-windows.zip
-    
-* Gems
-  devise;
-  rubocop;
-  rspec-rails;
-  simplecov;
-  factory_bot_rails;
-  poltergeist
+### Gems
 
-* Configuration
+- [Devise](https://github.com/plataformatec/devise)
 
-* Database creation
+- [Locaweb Style](http://opensource.locaweb.com.br/locawebstyle/)
 
-* Database initialization
+- [Capybara](https://github.com/teamcapybara/capybara)
 
-* How to run the test suite
+- [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
 
-* Services (job queues, cache servers, search engines, etc.)
+- [rspec-rails](https://github.com/rspec/rspec-rails)
 
-* Deployment instructions
+- [RuboCop](https://github.com/bbatsov/rubocop)
+ 
+- [SimpleCov](https://github.com/colszowka/simplecov)
 
-* ...
+- [Poltergeist](https://github.com/teampoltergeist/poltergeist)
+ 
+### Instalação
+
+Para a instalação, basta dar clone do projeto em sua máquina utilizando o seguinte
+comando em seu terminal:
+
+``` 
+git@vps1474.publiccloud.com.br:qsd18/vendas.git
+```
+Para inicializar a aplicação, dentro do diretório,  execute no terminal:
+
+```
+bin/setup
+```
+Logo após, popule o banco de dados com 
+
+```
+rails db:setup
+```
+
+E, por fim, instalar o PhantomJS
+   
+```
+Linux:
+Faça o download do arquivo diretamente do site oficial do PhantomJS
+https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+
+Extraia o arquivo com o comando: tar -jxvf 'arquivo baixado'
+navegue até a pasta 'bin' do arquivo
+execute o comando "sudo mv phantomjs /usr/local/bin"
+para copiar o arquivo para o PATH do seu sistema
+
+ MacOS:
+- Homebrew: brew install phantomjs
+
+Windows:
+Faça o download do arquivo diretamente do site oficial do PhantomJS
+- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-windows.zip
+```
+
+### Login
+
+Para o login na aplicação, há um administrador pré-definido:
+
+- Usuário: admin@admin.com
+- Senha: 12345678
+
+### Colaboradores
+
+- [Carlos Sechi](https://github.com/clsechi)
+- [Ingrid Rodrigues](https://github.com/IngridRodrigues15)
+- [Ítalo Almeida](https://github.com/italoalmeida89)
+- [Igor Duarte](https://github.com/igorduarte)
+- [Jamil Martinez](https://github.com/jamilmz)
+- [Lucca Rosa](https://github.com/LuccaRosa)
+- [Thiago Hocsis](https://github.com/ThiagoHocsis)
+- [Thiago Talarini](https://github.com/talarini)
+

@@ -5,3 +5,4 @@ pt-BR:
   customers: Clientes
   sales: Vendas
   exit: Sair
+  sale_explanation: Para começar uma nova venda, faça a busca do cliente(Nome, CPF ou CNPJ)
