@@ -73,6 +73,11 @@ Faça o download do arquivo diretamente do site oficial do PhantomJS
 - https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-windows.zip
 ```
 
+#### Executando a suíte de testes
+```
+rspec 
+```
+
 ### API
 
 **Verbo HTTP / *HTTP verb*:**
