@@ -9,13 +9,13 @@
   <%= form_for @customer, class:'ls-form row' do |f| %>
     <div>
       <b><%= f.label :name, class:"ls-label-text" %></b>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, placeholder:'José Pereira'%>
 
       <b><%= f.label :address, class:"ls-label-text" %></b>
-      <%= f.text_field :address %>
+      <%= f.text_field :address, placeholder:'Av.Paulista' %>
 
       <b><%= f.label :email, class:"ls-label-text" %></b>
-      <%= f.text_field :email %>
+      <%= f.text_field :email, placeholder:'email@example.com' %>
     </div>
 
     <div class="legal_checkbox">
@@ -28,10 +28,10 @@
     <div id="legal_div" style="display:block;">
       <br>
       <b><%= f.label :cpf, class:"ls-label-text" %></b>
-      <%= f.text_field :cpf, pattern: '/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/'%>
+      <%= f.text_field :cpf, placeholder:'123.456.789-99'%>
 
       <b><%= f.label :phone, class:"ls-label-text" %></b>
-      <%= f.text_field :phone %>
+      <%= f.text_field :phone, placeholder:'(11)1234-5678'%>
 
       <b><%= f.label :birth_date, class:"ls-label-text" %></b>
       <%= f.date_field :birth_date %>
@@ -40,13 +40,13 @@
     <div id="company_div" style="display:none;">
       <br>
       <b><%= f.label :cnpj, class:"ls-label-text" %></b>
-      <%= f.text_field :cnpj %>
+      <%= f.text_field :cnpj, placeholder:'12.345.678/9999-99' %>
 
       <b><%= f.label :company_name, class:"ls-label-text" %></b>
-      <%= f.text_field :company_name %>
+      <%= f.text_field :company_name, placeholder:'CompanyName S/A' %>
 
       <b><%= f.label :contact, class:"ls-label-text" %></b>
-      <%= f.text_field :contact %>
+      <%= f.text_field :contact, placeholder:'(11)1234-5678'  %>
     </div>
 
     <div class="ls-actions-btn">
