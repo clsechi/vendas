@@ -10,8 +10,8 @@ de novos cliente e novos pedidos feitos.
 
 ### Versões
 
-Ruby 2.3.3
-Rails 5.1.4
+*Ruby*: ***2.3.5***
+*Rails*: ***5.1.4***
 
 ### Gems
 
@@ -31,9 +31,9 @@ Rails 5.1.4
 
 - [Poltergeist](https://github.com/teampoltergeist/poltergeist)
  
--[HTTParty](https://github.com/jnunemaker/httparty)
+- [HTTParty](https://github.com/jnunemaker/httparty)
 
--[WebMock](https://github.com/bblimke/webmock)
+- [WebMock](https://github.com/bblimke/webmock)
  
 ### Instalação
 
@@ -54,19 +54,18 @@ Logo após, popule o banco de dados com
 rails db:setup
 ```
 
-E, por fim, instalar o PhantomJS
+E, por fim, instalar o PhantomJS para os testes de JavasScript com o Poltergeist
    
 ```
 Linux:
 Faça o download do arquivo diretamente do site oficial do PhantomJS
-https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
 
-Extraia o arquivo com o comando: tar -jxvf 'arquivo baixado'
+Extraia o arquivo com o comando  "tar -jxvf 'arquivo baixado'"
 navegue até a pasta 'bin' do arquivo
-execute o comando "sudo mv phantomjs /usr/local/bin"
-para copiar o arquivo para o PATH do seu sistema
+execute o comando "sudo mv phantomjs /usr/local/bin" para copiar o arquivo para o PATH do seu sistema
 
- MacOS:
+MacOS:
 - Homebrew: brew install phantomjs
 
 Windows:
