@@ -11,7 +11,7 @@ RSpec.describe OrdersSenderService do
       login_as seller
       body = { order: order, customer: order.customer }.to_json
       url = "#{Rails.configuration.sales['client_panel_url']}"\
-            "/orders"
+            '/orders'
 
       stub_request(:post, url)
         .with(
@@ -32,7 +32,7 @@ RSpec.describe OrdersSenderService do
       login_as seller
       body = { order: order, customer: order.customer }.to_json
       url = "#{Rails.configuration.sales['client_panel_url']}"\
-            "/orders"
+            '/orders'
 
       stub_request(:post, url)
         .with(
