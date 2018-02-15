@@ -13,7 +13,7 @@
           <% end %>
           <li> <%= link_to t(:customers), customers_path, html_options = {class: 'ls-ico-users' } %></li>
           <li> <%= link_to t(:sales), orders_path, html_options = { class: 'ls-ico-cart'} %> </li>
-          <li> <%= link_to t(:exit), destroy_seller_session_path, html_options = { method: :delete, class: 'ls-ico-cancel-circle'}%><li>
+          <li> <%= link_to t(:exit), destroy_seller_session_path, html_options = { method: :delete, data: { confirm: t(:confirm_exit)}, class: 'ls-ico-cancel-circle'}%><li>
         <% end %>
       </ul>
     </nav>
