@@ -20,6 +20,7 @@ rspec:
   except:
     - tags
   script:
+    - cp config/sales.yml.sample config/sales.yml
     - bundle exec rake db:drop db:create db:migrate
     - bundle exec rspec
 

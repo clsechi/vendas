@@ -5,7 +5,7 @@ module OrdersSenderService
 
     def self.send_post(order)
       params = { order: order, customer: order.customer }.to_json
-      response = post Rails.configuration.sales['send_order'],
+      response = post '/orders',
                       body: params,
                       headers: { 'Content-Type': 'application/json' }
 

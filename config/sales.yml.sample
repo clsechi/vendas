@@ -1,0 +1,9 @@
+production:
+  client_panel_url: http://localhost:3002/api
+  products_url: http://localhost:3001/api
+development:
+  client_panel_url: http://localhost:3002/api
+  products_url: http://localhost:3001/api
+test:
+  client_panel_url: http://localhost:3002/api
+  products_url: http://localhost:3001/api
