@@ -8,6 +8,8 @@ dados fornecidos pela API de Produtos.
 Neste sistema, temos uma interface para o vendedor e uma API que fornece dados 
 de novos cliente e novos pedidos feitos.
 
+### Dependências
+
 ### Versões
 
 *Ruby*: ***2.3.5***
