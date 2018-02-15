@@ -4,7 +4,13 @@
 <br>
 <p><b> <%= t(:order_date) %>: </b><%= l @order.created_at, format: :long %><p>
 <p><b> <%= t(:order_id) %>: </b><%= @order.id %><p>
-<p><b> <%= t(:value) %>: </b><%= @order.value %><p>
+<p><b> <%= t(:value) %>: </b>
+   <% if @order.value %>
+    R$ <%= format("%.2f", @order.value) %>
+   <% else %>
+    R$ 00.00
+   <% end %>
+<p>
 <p><b> <%= t(:seller) %>: </b><%= @order.seller.name %><p>
 
   <hr>
