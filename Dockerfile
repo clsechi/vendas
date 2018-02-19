@@ -1,17 +1,23 @@
-FROM ruby:2.3
+FROM ruby:2.3.3
 
-RUN apt-get update
-RUN apt-get install nodejs -y
+RUN apt-get update -qq
 
-EXPOSE 3000
-ENV PORT 3000
+RUN apt-get install -y --no-install-recommends nodejs
 
 RUN mkdir -p /var/www/vendas
+
+WORKDIR /tmp
+ADD Gemfile Gemfile
+ADD Gemfile.lock Gemfile.lock
+RUN bundle install --without test
+RUN gem install bundler-audit
+
 WORKDIR /var/www/vendas
-
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
-RUN bundle install
-
 ADD . /var/www/vendas
-CMD 'bundle exec rails server -b 0.0.0.0'
+RUN cp config/sales.yml.sample config/sales.yml
+
+run rake db:setup
+
+EXPOSE 3000
+
+CMD rails server --binding 0.0.0.0 --port 3000
